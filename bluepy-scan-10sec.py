@@ -29,8 +29,7 @@ def save_to_csv(row: list[str]):
 
 while True:
     try:
-        #5.0 sec scanning
-        print("bluepy: scanning for 10 seconds, please wait...")
+        print(f"bluepy: scanning for {timeout} seconds, please wait...")
         ble_list = Scanner().scan(timeout)
 
         for dev in ble_list:

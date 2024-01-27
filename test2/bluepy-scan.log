@@ -1,0 +1,104 @@
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:09:37.353165, Address: E9:71:D6:A6:52:19, RSSI: -63,  Timestamp: 1706371777.3531911
+Time in UTC: 2024-01-27 19:09:37.353843, Address: D7:AB:60:ED:B3:66, RSSI: -62,  Timestamp: 1706371777.3538535
+Time in UTC: 2024-01-27 19:09:37.353988, Address: FA:A5:6E:E8:3D:9C, RSSI: -69,  Timestamp: 1706371777.3539946
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:09:47.369269, Address: D7:AB:60:ED:B3:66, RSSI: -58,  Timestamp: 1706371787.3692887
+Time in UTC: 2024-01-27 19:09:47.369592, Address: FA:A5:6E:E8:3D:9C, RSSI: -61,  Timestamp: 1706371787.3696012
+Time in UTC: 2024-01-27 19:09:47.369746, Address: E9:71:D6:A6:52:19, RSSI: -64,  Timestamp: 1706371787.3697522
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:09:57.406103, Address: E9:71:D6:A6:52:19, RSSI: -63,  Timestamp: 1706371797.4061215
+Time in UTC: 2024-01-27 19:09:57.406384, Address: D7:AB:60:ED:B3:66, RSSI: -59,  Timestamp: 1706371797.406389
+Time in UTC: 2024-01-27 19:09:57.406488, Address: FA:A5:6E:E8:3D:9C, RSSI: -64,  Timestamp: 1706371797.406492
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:10:07.441888, Address: E9:71:D6:A6:52:19, RSSI: -63,  Timestamp: 1706371807.4419065
+Time in UTC: 2024-01-27 19:10:07.442200, Address: D7:AB:60:ED:B3:66, RSSI: -59,  Timestamp: 1706371807.4422083
+Time in UTC: 2024-01-27 19:10:07.442318, Address: FA:A5:6E:E8:3D:9C, RSSI: -63,  Timestamp: 1706371807.4423242
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:10:17.648688, Address: E9:71:D6:A6:52:19, RSSI: -63,  Timestamp: 1706371817.6487067
+Time in UTC: 2024-01-27 19:10:17.649027, Address: D7:AB:60:ED:B3:66, RSSI: -59,  Timestamp: 1706371817.6490352
+Time in UTC: 2024-01-27 19:10:17.649149, Address: FA:A5:6E:E8:3D:9C, RSSI: -69,  Timestamp: 1706371817.6491554
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:10:27.661697, Address: D7:AB:60:ED:B3:66, RSSI: -69,  Timestamp: 1706371827.6617444
+Time in UTC: 2024-01-27 19:10:27.662034, Address: FA:A5:6E:E8:3D:9C, RSSI: -62,  Timestamp: 1706371827.6620421
+Time in UTC: 2024-01-27 19:10:27.662146, Address: E9:71:D6:A6:52:19, RSSI: -70,  Timestamp: 1706371827.662152
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:10:37.732153, Address: D7:AB:60:ED:B3:66, RSSI: -69,  Timestamp: 1706371837.7321718
+Time in UTC: 2024-01-27 19:10:37.732454, Address: FA:A5:6E:E8:3D:9C, RSSI: -62,  Timestamp: 1706371837.7324624
+Time in UTC: 2024-01-27 19:10:37.732565, Address: E9:71:D6:A6:52:19, RSSI: -70,  Timestamp: 1706371837.7325711
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:10:47.747572, Address: D7:AB:60:ED:B3:66, RSSI: -70,  Timestamp: 1706371847.7475898
+Time in UTC: 2024-01-27 19:10:47.747881, Address: FA:A5:6E:E8:3D:9C, RSSI: -62,  Timestamp: 1706371847.7478876
+Time in UTC: 2024-01-27 19:10:47.747996, Address: E9:71:D6:A6:52:19, RSSI: -70,  Timestamp: 1706371847.7480001
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:10:57.760695, Address: D7:AB:60:ED:B3:66, RSSI: -63,  Timestamp: 1706371857.760713
+Time in UTC: 2024-01-27 19:10:57.760998, Address: FA:A5:6E:E8:3D:9C, RSSI: -65,  Timestamp: 1706371857.7610059
+Time in UTC: 2024-01-27 19:10:57.761117, Address: E9:71:D6:A6:52:19, RSSI: -85,  Timestamp: 1706371857.7611237
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:11:07.777043, Address: D7:AB:60:ED:B3:66, RSSI: -62,  Timestamp: 1706371867.7770624
+Time in UTC: 2024-01-27 19:11:07.777341, Address: FA:A5:6E:E8:3D:9C, RSSI: -69,  Timestamp: 1706371867.7773483
+Time in UTC: 2024-01-27 19:11:07.777473, Address: E9:71:D6:A6:52:19, RSSI: -59,  Timestamp: 1706371867.7774782
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:11:17.790107, Address: D7:AB:60:ED:B3:66, RSSI: -63,  Timestamp: 1706371877.7901258
+Time in UTC: 2024-01-27 19:11:17.790400, Address: FA:A5:6E:E8:3D:9C, RSSI: -68,  Timestamp: 1706371877.790406
+Time in UTC: 2024-01-27 19:11:17.790515, Address: E9:71:D6:A6:52:19, RSSI: -87,  Timestamp: 1706371877.7905195
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:11:27.804333, Address: E9:71:D6:A6:52:19, RSSI: -59,  Timestamp: 1706371887.8043528
+Time in UTC: 2024-01-27 19:11:27.804643, Address: D7:AB:60:ED:B3:66, RSSI: -59,  Timestamp: 1706371887.804649
+Time in UTC: 2024-01-27 19:11:27.804759, Address: FA:A5:6E:E8:3D:9C, RSSI: -65,  Timestamp: 1706371887.804765
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:11:37.818156, Address: D7:AB:60:ED:B3:66, RSSI: -61,  Timestamp: 1706371897.818176
+Time in UTC: 2024-01-27 19:11:37.818447, Address: FA:A5:6E:E8:3D:9C, RSSI: -63,  Timestamp: 1706371897.8184547
+Time in UTC: 2024-01-27 19:11:37.820059, Address: E9:71:D6:A6:52:19, RSSI: -65,  Timestamp: 1706371897.8200676
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:11:47.847771, Address: E9:71:D6:A6:52:19, RSSI: -61,  Timestamp: 1706371907.84779
+Time in UTC: 2024-01-27 19:11:47.848097, Address: FA:A5:6E:E8:3D:9C, RSSI: -66,  Timestamp: 1706371907.8481038
+Time in UTC: 2024-01-27 19:11:47.848223, Address: D7:AB:60:ED:B3:66, RSSI: -57,  Timestamp: 1706371907.8482277
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:11:57.863744, Address: E9:71:D6:A6:52:19, RSSI: -58,  Timestamp: 1706371917.8637621
+Time in UTC: 2024-01-27 19:11:57.864075, Address: D7:AB:60:ED:B3:66, RSSI: -60,  Timestamp: 1706371917.8640819
+Time in UTC: 2024-01-27 19:11:57.864200, Address: FA:A5:6E:E8:3D:9C, RSSI: -67,  Timestamp: 1706371917.8642046
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:12:07.878243, Address: E9:71:D6:A6:52:19, RSSI: -58,  Timestamp: 1706371927.8782597
+Time in UTC: 2024-01-27 19:12:07.878500, Address: D7:AB:60:ED:B3:66, RSSI: -60,  Timestamp: 1706371927.8785048
+Time in UTC: 2024-01-27 19:12:07.878610, Address: FA:A5:6E:E8:3D:9C, RSSI: -67,  Timestamp: 1706371927.878615
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:12:17.892368, Address: FA:A5:6E:E8:3D:9C, RSSI: -65,  Timestamp: 1706371937.8923867
+Time in UTC: 2024-01-27 19:12:17.892660, Address: E9:71:D6:A6:52:19, RSSI: -58,  Timestamp: 1706371937.8926659
+Time in UTC: 2024-01-27 19:12:17.892772, Address: D7:AB:60:ED:B3:66, RSSI: -63,  Timestamp: 1706371937.892778
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:12:27.914823, Address: FA:A5:6E:E8:3D:9C, RSSI: -65,  Timestamp: 1706371947.9148421
+Time in UTC: 2024-01-27 19:12:27.915141, Address: E9:71:D6:A6:52:19, RSSI: -58,  Timestamp: 1706371947.9151495
+Time in UTC: 2024-01-27 19:12:27.915270, Address: D7:AB:60:ED:B3:66, RSSI: -60,  Timestamp: 1706371947.9152756
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:12:37.941165, Address: FA:A5:6E:E8:3D:9C, RSSI: -67,  Timestamp: 1706371957.9411833
+Time in UTC: 2024-01-27 19:12:37.941502, Address: E9:71:D6:A6:52:19, RSSI: -59,  Timestamp: 1706371957.9415107
+Time in UTC: 2024-01-27 19:12:37.941628, Address: D7:AB:60:ED:B3:66, RSSI: -63,  Timestamp: 1706371957.9416347
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:12:48.004914, Address: FA:A5:6E:E8:3D:9C, RSSI: -67,  Timestamp: 1706371968.0049329
+Time in UTC: 2024-01-27 19:12:48.005236, Address: E9:71:D6:A6:52:19, RSSI: -77,  Timestamp: 1706371968.0052419
+Time in UTC: 2024-01-27 19:12:48.005372, Address: D7:AB:60:ED:B3:66, RSSI: -63,  Timestamp: 1706371968.0053773
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:12:58.032277, Address: FA:A5:6E:E8:3D:9C, RSSI: -65,  Timestamp: 1706371978.0322964
+Time in UTC: 2024-01-27 19:12:58.032602, Address: E9:71:D6:A6:52:19, RSSI: -58,  Timestamp: 1706371978.0326097
+Time in UTC: 2024-01-27 19:12:58.032720, Address: D7:AB:60:ED:B3:66, RSSI: -63,  Timestamp: 1706371978.0327253
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:13:08.071329, Address: FA:A5:6E:E8:3D:9C, RSSI: -67,  Timestamp: 1706371988.0713475
+Time in UTC: 2024-01-27 19:13:08.071633, Address: E9:71:D6:A6:52:19, RSSI: -58,  Timestamp: 1706371988.0716395
+Time in UTC: 2024-01-27 19:13:08.071743, Address: D7:AB:60:ED:B3:66, RSSI: -63,  Timestamp: 1706371988.071747
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:13:18.085745, Address: FA:A5:6E:E8:3D:9C, RSSI: -67,  Timestamp: 1706371998.0857632
+Time in UTC: 2024-01-27 19:13:18.086041, Address: E9:71:D6:A6:52:19, RSSI: -76,  Timestamp: 1706371998.0860498
+Time in UTC: 2024-01-27 19:13:18.086151, Address: D7:AB:60:ED:B3:66, RSSI: -60,  Timestamp: 1706371998.0861564
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:13:28.101407, Address: FA:A5:6E:E8:3D:9C, RSSI: -65,  Timestamp: 1706372008.1014256
+Time in UTC: 2024-01-27 19:13:28.101751, Address: E9:71:D6:A6:52:19, RSSI: -77,  Timestamp: 1706372008.1017592
+Time in UTC: 2024-01-27 19:13:28.101880, Address: D7:AB:60:ED:B3:66, RSSI: -63,  Timestamp: 1706372008.101886
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:13:38.116746, Address: E9:71:D6:A6:52:19, RSSI: -77,  Timestamp: 1706372018.1167662
+Time in UTC: 2024-01-27 19:13:38.117071, Address: D7:AB:60:ED:B3:66, RSSI: -64,  Timestamp: 1706372018.1170785
+Time in UTC: 2024-01-27 19:13:38.117201, Address: FA:A5:6E:E8:3D:9C, RSSI: -65,  Timestamp: 1706372018.1172063
+bluepy: scanning for 10.0 seconds, please wait...
+Time in UTC: 2024-01-27 19:13:48.164941, Address: FA:A5:6E:E8:3D:9C, RSSI: -65,  Timestamp: 1706372028.16496
+Time in UTC: 2024-01-27 19:13:48.165262, Address: E9:71:D6:A6:52:19, RSSI: -60,  Timestamp: 1706372028.165271
+Time in UTC: 2024-01-27 19:13:48.165391, Address: D7:AB:60:ED:B3:66, RSSI: -60,  Timestamp: 1706372028.1653955

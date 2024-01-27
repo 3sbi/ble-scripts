@@ -15,7 +15,7 @@ from bleak import BleakScanner
 import time
 from datetime import datetime
 
-timeout = 10.0
+timeout = 5.0
 filename = './bleak-scan-data.csv'
 
 def create_file_with_header():
@@ -37,7 +37,7 @@ def save_to_csv(row: list[str]):
         writer.writerow(row)
 
 async def main(args: argparse.Namespace):
-    print("bleak: scanning for 10 seconds, please wait...")
+    print(f"bleak: scanning for {timeout} seconds, please wait...")
 
     devices = await BleakScanner.discover(timeout,
         return_adv=True, cb=dict(use_bdaddr=args.macos_use_bdaddr)
