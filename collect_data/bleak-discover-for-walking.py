@@ -16,7 +16,7 @@ from consts import *
 import time
 from datetime import datetime
 
-timeout = 3.0
+timeout = 5.0
 filename = './bleak-scan-data.csv'
 discovered_devices_addresses: dict = {}
 

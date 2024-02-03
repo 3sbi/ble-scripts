@@ -1,0 +1,132 @@
+2024-02-03 18:55:18.379833 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: F3:B0:D4:A4:42:E0
+2024-02-03 18:55:21.499280 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: E9:71:D6:A6:52:19
+2024-02-03 18:55:24.524861 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: F3:B0:D4:A4:42:E0
+found beacon with address: E4:02:B8:34:EC:F3
+{'F3:B0:D4:A4:42:E0': -63, 'E9:71:D6:A6:52:19': -66, 'E4:02:B8:34:EC:F3': -86}
+
+FOUND 3 OR MORE, WRITING TO FILE
+['F3:B0:D4:A4:42:E0', 'E9:71:D6:A6:52:19', 'E4:02:B8:34:EC:F3']
+Time in UTC: 2024-02-03 18:55:27.533287, Address: F3:B0:D4:A4:42:E0, RSSI: -63, timestamp: 1706975727.5332875
+Time in UTC: 2024-02-03 18:55:27.533287, Address: E9:71:D6:A6:52:19, RSSI: -66, timestamp: 1706975727.5332875
+Time in UTC: 2024-02-03 18:55:27.533287, Address: E4:02:B8:34:EC:F3, RSSI: -86, timestamp: 1706975727.5332875
+
+
+2024-02-03 18:55:27.553540 | bleak: scanning for 3.0 seconds, please wait...
+2024-02-03 18:55:30.595654 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: E4:02:B8:34:EC:F3
+2024-02-03 18:55:33.606181 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: F3:B0:D4:A4:42:E0
+2024-02-03 18:55:36.649873 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: FA:A5:6E:E8:3D:9C
+{'E4:02:B8:34:EC:F3': -92, 'F3:B0:D4:A4:42:E0': -58, 'FA:A5:6E:E8:3D:9C': -74}
+
+FOUND 3 OR MORE, WRITING TO FILE
+['F3:B0:D4:A4:42:E0', 'FA:A5:6E:E8:3D:9C', 'E4:02:B8:34:EC:F3']
+Time in UTC: 2024-02-03 18:55:39.673343, Address: F3:B0:D4:A4:42:E0, RSSI: -58, timestamp: 1706975739.6733432
+Time in UTC: 2024-02-03 18:55:39.673343, Address: FA:A5:6E:E8:3D:9C, RSSI: -74, timestamp: 1706975739.6733432
+Time in UTC: 2024-02-03 18:55:39.673343, Address: E4:02:B8:34:EC:F3, RSSI: -92, timestamp: 1706975739.6733432
+
+
+2024-02-03 18:55:39.685829 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: E4:02:B8:34:EC:F3
+2024-02-03 18:55:42.739243 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: E9:71:D6:A6:52:19
+found beacon with address: F3:B0:D4:A4:42:E0
+{'E4:02:B8:34:EC:F3': -88, 'E9:71:D6:A6:52:19': -77, 'F3:B0:D4:A4:42:E0': -60}
+
+FOUND 3 OR MORE, WRITING TO FILE
+['F3:B0:D4:A4:42:E0', 'E9:71:D6:A6:52:19', 'E4:02:B8:34:EC:F3']
+Time in UTC: 2024-02-03 18:55:45.790491, Address: F3:B0:D4:A4:42:E0, RSSI: -60, timestamp: 1706975745.7904916
+Time in UTC: 2024-02-03 18:55:45.790491, Address: E9:71:D6:A6:52:19, RSSI: -77, timestamp: 1706975745.7904916
+Time in UTC: 2024-02-03 18:55:45.790491, Address: E4:02:B8:34:EC:F3, RSSI: -88, timestamp: 1706975745.7904916
+
+
+2024-02-03 18:55:45.806152 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: FA:A5:6E:E8:3D:9C
+2024-02-03 18:55:48.841729 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: D7:AB:60:ED:B3:66
+found beacon with address: F3:B0:D4:A4:42:E0
+{'FA:A5:6E:E8:3D:9C': -68, 'D7:AB:60:ED:B3:66': -77, 'F3:B0:D4:A4:42:E0': -64}
+
+FOUND 3 OR MORE, WRITING TO FILE
+['F3:B0:D4:A4:42:E0', 'FA:A5:6E:E8:3D:9C', 'D7:AB:60:ED:B3:66']
+Time in UTC: 2024-02-03 18:55:51.854094, Address: F3:B0:D4:A4:42:E0, RSSI: -64, timestamp: 1706975751.8540943
+Time in UTC: 2024-02-03 18:55:51.854094, Address: FA:A5:6E:E8:3D:9C, RSSI: -68, timestamp: 1706975751.8540943
+Time in UTC: 2024-02-03 18:55:51.854094, Address: D7:AB:60:ED:B3:66, RSSI: -77, timestamp: 1706975751.8540943
+
+
+2024-02-03 18:55:51.861813 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: FA:A5:6E:E8:3D:9C
+2024-02-03 18:55:54.861965 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: D7:AB:60:ED:B3:66
+found beacon with address: E9:71:D6:A6:52:19
+{'FA:A5:6E:E8:3D:9C': -69, 'D7:AB:60:ED:B3:66': -82, 'E9:71:D6:A6:52:19': -65}
+
+FOUND 3 OR MORE, WRITING TO FILE
+['E9:71:D6:A6:52:19', 'FA:A5:6E:E8:3D:9C', 'D7:AB:60:ED:B3:66']
+Time in UTC: 2024-02-03 18:55:57.865595, Address: E9:71:D6:A6:52:19, RSSI: -65, timestamp: 1706975757.8655949
+Time in UTC: 2024-02-03 18:55:57.865595, Address: FA:A5:6E:E8:3D:9C, RSSI: -69, timestamp: 1706975757.8655949
+Time in UTC: 2024-02-03 18:55:57.865595, Address: D7:AB:60:ED:B3:66, RSSI: -82, timestamp: 1706975757.8655949
+
+
+2024-02-03 18:55:57.875163 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: E9:71:D6:A6:52:19
+found beacon with address: FA:A5:6E:E8:3D:9C
+2024-02-03 18:56:00.891557 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: F3:B0:D4:A4:42:E0
+found beacon with address: E4:02:B8:34:EC:F3
+{'E9:71:D6:A6:52:19': -64, 'FA:A5:6E:E8:3D:9C': -79, 'F3:B0:D4:A4:42:E0': -75, 'E4:02:B8:34:EC:F3': -61}
+
+FOUND 3 OR MORE, WRITING TO FILE
+['E4:02:B8:34:EC:F3', 'E9:71:D6:A6:52:19', 'F3:B0:D4:A4:42:E0']
+Time in UTC: 2024-02-03 18:56:03.919042, Address: E4:02:B8:34:EC:F3, RSSI: -61, timestamp: 1706975763.9190428
+Time in UTC: 2024-02-03 18:56:03.919042, Address: E9:71:D6:A6:52:19, RSSI: -64, timestamp: 1706975763.9190428
+Time in UTC: 2024-02-03 18:56:03.919042, Address: F3:B0:D4:A4:42:E0, RSSI: -75, timestamp: 1706975763.9190428
+
+
+2024-02-03 18:56:03.928786 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: D7:AB:60:ED:B3:66
+found beacon with address: F3:B0:D4:A4:42:E0
+found beacon with address: FA:A5:6E:E8:3D:9C
+{'D7:AB:60:ED:B3:66': -77, 'F3:B0:D4:A4:42:E0': -76, 'FA:A5:6E:E8:3D:9C': -87}
+
+FOUND 3 OR MORE, WRITING TO FILE
+['F3:B0:D4:A4:42:E0', 'D7:AB:60:ED:B3:66', 'FA:A5:6E:E8:3D:9C']
+Time in UTC: 2024-02-03 18:56:06.955491, Address: F3:B0:D4:A4:42:E0, RSSI: -76, timestamp: 1706975766.9554915
+Time in UTC: 2024-02-03 18:56:06.955491, Address: D7:AB:60:ED:B3:66, RSSI: -77, timestamp: 1706975766.9554915
+Time in UTC: 2024-02-03 18:56:06.955491, Address: FA:A5:6E:E8:3D:9C, RSSI: -87, timestamp: 1706975766.9554915
+
+
+2024-02-03 18:56:06.964588 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: E9:71:D6:A6:52:19
+found beacon with address: E4:02:B8:34:EC:F3
+2024-02-03 18:56:09.994048 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: F3:B0:D4:A4:42:E0
+found beacon with address: E9:71:D6:A6:52:19
+{'E9:71:D6:A6:52:19': -57, 'E4:02:B8:34:EC:F3': -64, 'F3:B0:D4:A4:42:E0': -78}
+
+FOUND 3 OR MORE, WRITING TO FILE
+['E9:71:D6:A6:52:19', 'E4:02:B8:34:EC:F3', 'F3:B0:D4:A4:42:E0']
+Time in UTC: 2024-02-03 18:56:13.035169, Address: E9:71:D6:A6:52:19, RSSI: -57, timestamp: 1706975773.0351696
+Time in UTC: 2024-02-03 18:56:13.035169, Address: E4:02:B8:34:EC:F3, RSSI: -64, timestamp: 1706975773.0351696
+Time in UTC: 2024-02-03 18:56:13.035169, Address: F3:B0:D4:A4:42:E0, RSSI: -78, timestamp: 1706975773.0351696
+
+
+2024-02-03 18:56:13.044836 | bleak: scanning for 3.0 seconds, please wait...
+2024-02-03 18:56:16.085724 | bleak: scanning for 3.0 seconds, please wait...
+found beacon with address: FA:A5:6E:E8:3D:9C
+found beacon with address: F3:B0:D4:A4:42:E0
+found beacon with address: D7:AB:60:ED:B3:66
+{'FA:A5:6E:E8:3D:9C': -91, 'F3:B0:D4:A4:42:E0': -75, 'D7:AB:60:ED:B3:66': -70}
+
+FOUND 3 OR MORE, WRITING TO FILE
+['D7:AB:60:ED:B3:66', 'F3:B0:D4:A4:42:E0', 'FA:A5:6E:E8:3D:9C']
+Time in UTC: 2024-02-03 18:56:19.105996, Address: D7:AB:60:ED:B3:66, RSSI: -70, timestamp: 1706975779.1059964
+Time in UTC: 2024-02-03 18:56:19.105996, Address: F3:B0:D4:A4:42:E0, RSSI: -75, timestamp: 1706975779.1059964
+Time in UTC: 2024-02-03 18:56:19.105996, Address: FA:A5:6E:E8:3D:9C, RSSI: -91, timestamp: 1706975779.1059964
+
+
+2024-02-03 18:56:19.115279 | bleak: scanning for 3.0 seconds, please wait...
