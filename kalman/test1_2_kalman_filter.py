@@ -123,9 +123,15 @@ def get_predictions(measurements):
     predictions = []
     for m in measurements:
         # predictions.append(np.dot(H,  kf.predict())[0])
-        predictions.append(kf.filter(m))
         # kf.update(m)
+        predictions.append(kf.filter(m))
     return predictions
+
+def get_predictions_and_plot(measurements, name):
+    predictions = get_predictions(measurements)[7:]
+    measurements = measurements[7:]
+    plot_predictions(name, measurements, predictions)
+    return measurements, predictions
 
 
 def determine_position(csv_file: str):
@@ -153,15 +159,9 @@ def determine_position(csv_file: str):
         rssi_ap26 = np.array(rssi_ap26)
         
         # apply kalman filter
-        filtered_rssi_ap24 = get_predictions(rssi_ap24)
-        rssi_ap24=rssi_ap24
-        plot_predictions('ap24', rssi_ap24, filtered_rssi_ap24)
-        filtered_rssi_ap25 = get_predictions(rssi_ap25)
-        rssi_ap25=rssi_ap25
-        plot_predictions('ap25', rssi_ap25, filtered_rssi_ap25)
-        filtered_rssi_ap26 = get_predictions(rssi_ap26)
-        rssi_ap26=rssi_ap26
-        plot_predictions('ap26', rssi_ap26, filtered_rssi_ap26)
+        (rssi_ap24, filtered_rssi_ap24) =get_predictions_and_plot(rssi_ap24, 'ap24')
+        (rssi_ap25, filtered_rssi_ap25) =get_predictions_and_plot(rssi_ap25, 'ap25')
+        (rssi_ap26, filtered_rssi_ap26) =get_predictions_and_plot(rssi_ap26, 'ap26')
 
         mean_rssi_ap24 = np.nanmean((np.array(filtered_rssi_ap24)))
         mean_rssi_ap25 = np.nanmean((np.array(filtered_rssi_ap25)))

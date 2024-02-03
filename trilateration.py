@@ -32,19 +32,9 @@ def determine_position(csv_file: str):
                 value = int(row['rssi'])
                 rssi_ap26.append(value)
 
-        # convert to numpy array
-        rssi_ap24 = np.array(rssi_ap24)
-        rssi_ap25 = np.array(rssi_ap25)
-        rssi_ap26 = np.array(rssi_ap26)
-
-        # print("RSSI values for each beacon:")
-        # print(f"AP24 = {rssi_ap24}")
-        # print(f"AP25 = {rssi_ap25}")
-        # print(f"AP26 = {rssi_ap26}")
-        
-        mean_rssi_ap24 = np.nanmean((np.array(rssi_ap24)))
-        mean_rssi_ap25 = np.nanmean((np.array(rssi_ap25)))
-        mean_rssi_ap26 = np.nanmean((np.array(rssi_ap26)))
+        mean_rssi_ap24 = np.nanmean(np.array(rssi_ap24))
+        mean_rssi_ap25 = np.nanmean(np.array(rssi_ap25))
+        mean_rssi_ap26 = np.nanmean(np.array(rssi_ap26))
 
         print("\nMean values:")
         print(f"AP24={float(mean_rssi_ap24)}, AP25={float(mean_rssi_ap25)}, AP26={float(mean_rssi_ap26)} \n")

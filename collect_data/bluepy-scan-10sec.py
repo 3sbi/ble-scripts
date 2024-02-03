@@ -2,11 +2,11 @@ from bluepy.btle import Scanner
 import os
 import csv
 import time
+from consts import *
 from datetime import datetime
 
-timeout = 10.0
+timeout = 3.0
 filename = './bluepy-scan-data.csv'
-ble_beacons_addrs = ['FA:A5:6E:E8:3D:9C', 'E9:71:D6:A6:52:19', 'D7:AB:60:ED:B3:66']
 
 def create_file_with_header():
     header = ['datetime_utc', 'address', 'rssi', 'timestamp_in_seconds']
@@ -28,14 +28,34 @@ def save_to_csv(row: list[str]):
 
 
 while True:
-    try:
-        print(f"bluepy: scanning for {timeout} seconds, please wait...")
+    try:     
+        print(f"{datetime.now()} | bluepy: scanning for {timeout} seconds, please wait...")
         ble_list = Scanner().scan(timeout)
+        global discovered_devices_addresses
 
-        for dev in ble_list:
-            if (dev.addr.upper() in ble_beacons_addrs):
-                values = [datetime.now(), dev.addr.upper(), dev.rssi, time.time()]
-                print(f"Time in UTC: {values[0]}, Address: {values[1]}, RSSI: {values[2]},  Timestamp: {values[3]}")
+        for device in ble_list:
+            if (device.addr.upper() in ADDRESSES):
+                print(f'found beacon with address: {device.address.upper()}')
+                discovered_devices_addresses[device.address.upper()] = (device.rssi)
+
+        if len(discovered_devices_addresses.keys()) >= 3:
+            print(discovered_devices_addresses)
+            print("\nFOUND 3 OR MORE, WRITING TO FILE")
+            delta_rssi_addresses = {} 
+            for address in discovered_devices_addresses:
+                delta_rssi_addresses[address] = abs(discovered_devices_addresses[address]-RSSI_AT_1M)
+            smallest_deltas_addresses = sorted(delta_rssi_addresses, key=delta_rssi_addresses.get)[:3]
+            print(smallest_deltas_addresses)
+
+            utc = datetime.now()
+            timestamp = time.time()
+            for address in smallest_deltas_addresses:
+                rssi = discovered_devices_addresses[address]
+                values = [utc, address, rssi, timestamp]
+                print(f'Time in UTC: {values[0]}, Address: {values[1]}, RSSI: {values[2]}, timestamp: {values[3]}')
                 save_to_csv(values)
+            print('')
+            discovered_devices_addresses = {}
+
     except:
         raise Exception("Error occured")
