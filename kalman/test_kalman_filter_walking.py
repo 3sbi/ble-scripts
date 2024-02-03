@@ -5,13 +5,9 @@ import matplotlib.pyplot as plt
 from consts import *
 from util import trilateration
 
-# test 1
-# REAL_POSITION = (9.5, 7)
-# FILENAME = '../test1/bluepy-scan-data.csv'
-
-# test 2
-REAL_POSITION = (3.9, 2)
-FILENAME = '../test2/bluepy-scan-data.csv'
+#test walking 1
+REAL_POSITION = (5.95, 2)
+FILENAME = './walking/test1/bleak-scan-data.csv'
 
 class KalmanFilter:
     cov = float('nan')
@@ -113,17 +109,9 @@ def plot_predictions(title, measurements, predictions):
     plt.show()
 
 def get_predictions(measurements):
-    dt = 1.0/60
-    F = np.array([[1, dt, 0], [0, 1, dt], [0, 0, 1]])
-    H = np.array([1, 0, 0]).reshape(1, 3)
-    Q = np.array([[0.05, 0.05, 0.0], [0.05, 0.05, 0.0], [0.0, 0.0, 0.0]])
-    R = np.array([0.5]).reshape(1, 1)
-    # kf = KalmanFilter(F = F, H = H, Q = Q, R = R)
     kf = KalmanFilter(0.001, 0.15)
     predictions = []
     for m in measurements:
-        # predictions.append(np.dot(H,  kf.predict())[0])
-        # kf.update(m)
         predictions.append(kf.filter(m))
     return predictions
 
@@ -137,21 +125,32 @@ def get_predictions_and_plot(measurements, name):
 def determine_position(csv_file: str):
     with open(csv_file, 'r') as file:
         reader = csv.DictReader(file)
+        rssi_ap22 = []
         rssi_ap24 = []
         rssi_ap25 = []
         rssi_ap26 = []
+        rssi_ap30 = []
         for row in reader:
-            if ADDRESSES[0] in row['address']:
+            if ADDRESS_AP22 in row['address']:
+                value = int(row['rssi'])
+                rssi_ap22.append(value) 
+
+            if ADDRESS_AP24 in row['address']:
                 value = int(row['rssi'])
                 rssi_ap24.append(value) 
                 
-            if ADDRESSES[1] in row['address']:
+            if ADDRESS_AP25 in row['address']:
                 value = int(row['rssi'])
                 rssi_ap25.append(value)
                 
-            if ADDRESSES[2] in row['address']:
+            if ADDRESS_AP26 in row['address']:
                 value = int(row['rssi'])
                 rssi_ap26.append(value)
+
+            if ADDRESS_AP30 in row['address']:
+                value = int(row['rssi'])
+                rssi_ap30.append(value) 
+
 
         # convert to numpy array
         rssi_ap24 = np.array(rssi_ap24)
@@ -159,9 +158,9 @@ def determine_position(csv_file: str):
         rssi_ap26 = np.array(rssi_ap26)
         
         # apply kalman filter
-        (rssi_ap24, filtered_rssi_ap24) =get_predictions_and_plot(rssi_ap24, 'ap24')
-        (rssi_ap25, filtered_rssi_ap25) =get_predictions_and_plot(rssi_ap25, 'ap25')
-        (rssi_ap26, filtered_rssi_ap26) =get_predictions_and_plot(rssi_ap26, 'ap26')
+        (rssi_ap24, filtered_rssi_ap24) = get_predictions_and_plot(rssi_ap24, 'ap24')
+        (rssi_ap25, filtered_rssi_ap25) = get_predictions_and_plot(rssi_ap25, 'ap25')
+        (rssi_ap26, filtered_rssi_ap26) = get_predictions_and_plot(rssi_ap26, 'ap26')
 
         mean_rssi_ap24 = np.nanmean((np.array(filtered_rssi_ap24)))
         mean_rssi_ap25 = np.nanmean((np.array(filtered_rssi_ap25)))
@@ -170,7 +169,7 @@ def determine_position(csv_file: str):
         print("\nMean values:")
         print(f"AP24={float(mean_rssi_ap24)}, AP25={float(mean_rssi_ap25)}, AP26={float(mean_rssi_ap26)}")
         rssi_values = [float(mean_rssi_ap24), float(mean_rssi_ap25), float(mean_rssi_ap26)]
-        ref_points = [REF_POINT_AP24, REF_POINT_AP25, REF_POINT_AP26]
+        ref_points = [REF_POINT_AP24, REF_POINT_AP25, REF_POINT_AP22]
 
         # Determine the Squared Root Error and the Mean Squared Error 
         position = trilateration(ref_points, rssi_values, RSSI_AT_1M, N)
