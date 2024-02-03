@@ -1,0 +1,9 @@
+ADDRESSES = ['D7:AB:60:ED:B3:66', 'E9:71:D6:A6:52:19', 'FA:A5:6E:E8:3D:9C']
+N=3
+RSSI_AT_1M = -49
+
+# Define reference points with known positions and RSSI values
+REF_POINT_AP24=(2, 7)
+REF_POINT_AP25=(8.50, 7)
+REF_POINT_AP26=(4.75, 0)
+REF_POINTS = [REF_POINT_AP24, REF_POINT_AP25, REF_POINT_AP26]
