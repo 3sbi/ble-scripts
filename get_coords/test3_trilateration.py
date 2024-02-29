@@ -1,11 +1,15 @@
-import csv
-import numpy as np
 import math
-from util import trilateration
+import numpy as np
+import csv
 from consts import *
+from util import trilateration
 
+REF_POINTS = [TEST123_REF_POINT_AP24, TEST123_REF_POINT_AP25, TEST123_REF_POINT_AP26]
+
+# тест 3 - проход по прямой линии в кабинете 202
+# каждые 15 секунд человек проходит 100 см., поэтому реальные позиции именно такие
 REAL_POSITIONS = [(0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1)]
-FILENAME = './bluepy-scan-data.csv'
+FILENAME = '../test3/bluepy-scan-data.csv'
 
 
 def determine_position(csv_file: str):

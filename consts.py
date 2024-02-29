@@ -16,14 +16,8 @@ ADDRESSES = list(DICT_ADDRESSES.values())
 N=3
 RSSI_AT_1M = -49
 
+# Значения местоположения маяков для тестов 1, 2, 3
 # Define reference points with known positions and RSSI values
-# REF_POINT_AP24=(2, 7)
-# REF_POINT_AP25=(8.50, 7)
-# REF_POINT_AP26=(4.75, 0)
-
-
-REF_POINT_AP22 = (0, 3)
-REF_POINT_AP24 = (7.2, 3.4)
-REF_POINT_AP25 = (11.85, 10.6)
-REF_POINT_AP26 = (1.03, 11.89)
-REF_POINT_AP30 = (6.45, 8.7)
+TEST123_REF_POINT_AP24=(2, 7)
+TEST123_REF_POINT_AP25=(8.50, 7)
+TEST123_REF_POINT_AP26=(4.75, 0)

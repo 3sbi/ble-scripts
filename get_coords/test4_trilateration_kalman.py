@@ -5,13 +5,18 @@ import matplotlib.pyplot as plt
 from consts import *
 from util import trilateration
 
-# test 1
-# REAL_POSITION = (9.5, 7)
-# FILENAME = '../test1/bluepy-scan-data.csv'
+#test 4
+REAL_POSITION = (5.95, 2)
+FILENAME = './test4/bleak-scan-data.csv'
 
-# test 2
-REAL_POSITION = (3.9, 2)
-FILENAME = '../test2/bluepy-scan-data.csv'
+# значения местоположения маяков для тестов 4, 5
+TEST4_REF_POINTS = {
+    22: (0, 3),
+    24: (7.2, 3.4),
+    25: (11.85, 10.6),
+    26: (1.03, 11.89),
+    30: (6.45, 8.7)
+}
 
 class KalmanFilter:
     cov = float('nan')
@@ -25,7 +30,7 @@ class KalmanFilter:
         """
         self.A = 1
         self.B = 0
-        self.C = 1
+        self.C = 11111
 
         self.R = R
         self.Q = Q
@@ -113,18 +118,10 @@ def plot_predictions(title, measurements, predictions):
     plt.show()
 
 def get_predictions(measurements):
-    dt = 1.0/60
-    F = np.array([[1, dt, 0], [0, 1, dt], [0, 0, 1]])
-    H = np.array([1, 0, 0]).reshape(1, 3)
-    Q = np.array([[0.05, 0.05, 0.0], [0.05, 0.05, 0.0], [0.0, 0.0, 0.0]])
-    R = np.array([0.5]).reshape(1, 1)
-    # kf = KalmanFilter(F = F, H = H, Q = Q, R = R)
     kf = KalmanFilter(0.001, 0.15)
     predictions = []
-    for m in measurements:
-        # predictions.append(np.dot(H,  kf.predict())[0])
-        # kf.update(m)
-        predictions.append(kf.filter(m))
+    for measurement in measurements:
+        predictions.append(kf.filter(measurement))
     return predictions
 
 def get_predictions_and_plot(measurements, name):
@@ -133,53 +130,53 @@ def get_predictions_and_plot(measurements, name):
     plot_predictions(name, measurements, predictions)
     return measurements, predictions
 
+def get_ref_points_by_addresses(addresses):
+    ref_points = []
+    for address in addresses:
+        index = list(DICT_ADDRESSES.values()).index(address)
+        ref_point_number = list(DICT_ADDRESSES.keys())[index]
+        point = TEST4_REF_POINTS.get(ref_point_number)
+        ref_points.append(point)
+    return ref_points
+
 
 def determine_position(csv_file: str):
+    kf = KalmanFilter(0.001, 0.2)
+    kf_position_x = KalmanFilter(0.001, 0.2)
+    kf_position_y = KalmanFilter(0.001, 0.2)
+    timestamps = []
+    sqes = []
     with open(csv_file, 'r') as file:
         reader = csv.DictReader(file)
-        rssi_ap24 = []
-        rssi_ap25 = []
-        rssi_ap26 = []
-        for row in reader:
-            if ADDRESSES[0] in row['address']:
-                value = int(row['rssi'])
-                rssi_ap24.append(value) 
-                
-            if ADDRESSES[1] in row['address']:
-                value = int(row['rssi'])
-                rssi_ap25.append(value)
-                
-            if ADDRESSES[2] in row['address']:
-                value = int(row['rssi'])
-                rssi_ap26.append(value)
-
-        # convert to numpy array
-        rssi_ap24 = np.array(rssi_ap24)
-        rssi_ap25 = np.array(rssi_ap25)
-        rssi_ap26 = np.array(rssi_ap26)
-        
-        # apply kalman filter
-        (rssi_ap24, filtered_rssi_ap24) =get_predictions_and_plot(rssi_ap24, 'ap24')
-        (rssi_ap25, filtered_rssi_ap25) =get_predictions_and_plot(rssi_ap25, 'ap25')
-        (rssi_ap26, filtered_rssi_ap26) =get_predictions_and_plot(rssi_ap26, 'ap26')
-
-        mean_rssi_ap24 = np.nanmean((np.array(filtered_rssi_ap24)))
-        mean_rssi_ap25 = np.nanmean((np.array(filtered_rssi_ap25)))
-        mean_rssi_ap26 = np.nanmean((np.array(filtered_rssi_ap26)))
-
-        print("\nMean values:")
-        print(f"AP24={float(mean_rssi_ap24)}, AP25={float(mean_rssi_ap25)}, AP26={float(mean_rssi_ap26)}")
-        rssi_values = [float(mean_rssi_ap24), float(mean_rssi_ap25), float(mean_rssi_ap26)]
-        ref_points = [REF_POINT_AP24, REF_POINT_AP25, REF_POINT_AP26]
-
-        # Determine the Squared Root Error and the Mean Squared Error 
-        position = trilateration(ref_points, rssi_values, RSSI_AT_1M, N)
-        print(f"\nCalculated position: {position}")
-        print(f"Real position: {REAL_POSITION}")
-
-        SQE = math.sqrt((position[0] - REAL_POSITION[0])**2 + (position[1] - REAL_POSITION[1])**2)
-        MSE = np.mean(SQE)
-        print(f"SQE={SQE}, MSE={MSE}");
+        rows = list(reader)
+        for row in rows:
+            timestamp = row['timestamp_in_seconds']
+            if timestamp in timestamps:
+                continue
+            else:
+                timestamps.append(timestamp)
+                matches = [row for row in rows if row['timestamp_in_seconds'] == timestamp]
+                rssi_values = [int(o['rssi']) for o in matches]
+                predictions=[]
+                for measurement in rssi_values:
+                    predictions.append(kf.filter(measurement))
+                rssi_values = predictions
+                addresses = [o['address'] for o in matches]
+                print(addresses)
+                ref_points = get_ref_points_by_addresses(addresses)
+                # Determine the Squared Root Error and the Mean Squared Error 
+                position = trilateration(ref_points, rssi_values, RSSI_AT_1M, N)
+                print(f"Calculated position: {position}")
+                print(f"Real position: {REAL_POSITION}")
+                SQE = math.sqrt((position[0] - REAL_POSITION[0])**2 + (position[1] - REAL_POSITION[1])**2)
+                sqes.append(SQE)
+                MSE = np.mean(SQE)
+                print(f"SQE={SQE}, MSE={MSE}\n");
+    plt.plot(range(len(sqes)), sqes, label= "SQE")
+    mean_value = np.nanmean((np.array(sqes)))
+    plt.plot(range(len(sqes)), [mean_value]*len(sqes), label="mean SQE")
+    plt.legend()
+    plt.show()
 
 
 determine_position(FILENAME)
