@@ -6,7 +6,7 @@ from util.consts import *
 from util.util_func import trilateration
 
 #test 5
-FILENAME = './test5/timeout-5s-v2/bleak-scan-data.csv'
+FILENAME = './data/test5/timeout-5s-v2/bleak-scan-data.csv'
 
 # значения местоположения маяков для тестов 4, 5
 TEST5_REF_POINTS = {

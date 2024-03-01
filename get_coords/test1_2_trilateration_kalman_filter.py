@@ -2,7 +2,7 @@ import math
 import numpy as np
 import csv
 import matplotlib.pyplot as plt
-from util.consts import *
+from util.consts import TEST123_REF_POINT_AP24, TEST123_REF_POINT_AP25, TEST123_REF_POINT_AP26, RSSI_AT_1M, N, ADDRESSES
 from util.util_func import trilateration
 
 REF_POINTS = [TEST123_REF_POINT_AP24, TEST123_REF_POINT_AP25, TEST123_REF_POINT_AP26]

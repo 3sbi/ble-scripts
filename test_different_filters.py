@@ -1,6 +1,7 @@
-from util.util_func import trilateration, plot_signals
+from util.util_func import trilateration
 from util.filters import gray_filter, fft_filter, kalman_filter, particle_filter
 from util.consts import N, REF_POINTS, ADDRESSES, RSSI_AT_1M
+from util.draw import plot_signals
 import numpy as np
 import csv
 import math

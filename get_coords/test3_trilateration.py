@@ -1,7 +1,7 @@
 import math
 import numpy as np
 import csv
-from util.consts import *
+from util.consts import TEST123_REF_POINT_AP24, TEST123_REF_POINT_AP25, TEST123_REF_POINT_AP26, RSSI_AT_1M, N, ADDRESSES
 from util.util_func import trilateration
 
 REF_POINTS = [TEST123_REF_POINT_AP24, TEST123_REF_POINT_AP25, TEST123_REF_POINT_AP26]
@@ -9,7 +9,7 @@ REF_POINTS = [TEST123_REF_POINT_AP24, TEST123_REF_POINT_AP25, TEST123_REF_POINT_
 # тест 3 - проход по прямой линии в кабинете 202
 # каждые 15 секунд человек проходит 100 см., поэтому реальные позиции именно такие
 REAL_POSITIONS = [(0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1)]
-FILENAME = '../test3/bluepy-scan-data.csv'
+FILENAME = './data/test3/bluepy-scan-data.csv'
 
 
 def determine_position(csv_file: str):
@@ -50,7 +50,7 @@ def determine_position(csv_file: str):
             rssi_values = [float(mean_rssi_ap24), float(mean_rssi_ap25), float(mean_rssi_ap26)]
 
             # Determine the Squared Root Error and the Mean Squared Error 
-            position = trilateration(REF_POINTS, rssi_values)
+            position = trilateration(REF_POINTS, rssi_values, RSSI_AT_1M, N)
             print(f"Calculated position: {position}")
 
             SQE = math.sqrt((position[0] - real_position[0])**2 + (position[1] - real_position[1])**2)

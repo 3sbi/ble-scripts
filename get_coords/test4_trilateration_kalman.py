@@ -7,7 +7,7 @@ from util.util_func import trilateration
 
 #test 4
 REAL_POSITION = (5.95, 2)
-FILENAME = './test4/bleak-scan-data.csv'
+FILENAME = './data/test4/bleak-scan-data.csv'
 
 # значения местоположения маяков для тестов 4, 5
 TEST4_REF_POINTS = {
