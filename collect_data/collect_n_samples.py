@@ -27,7 +27,8 @@ def save_to_csv(filename:str, row: list[str|datetime|float]):
 # scans N samples and save them to csv file
 # filename_ending is used to create different filenames easily if we are collecting multiple samples
 async def collect(n_finish:int, filename_ending: str):
-    filename: str = f'./bleak-scan-data_{n_finish}_samples_{filename_ending}.csv'
+    n = 0
+    filename: str = f'./test_data/test0_error_for_different_distance/{n_finish}_samples_{filename_ending}.csv'
     async with BleakScanner() as scanner:
         print("Scanning...")
         async for device, advertisement_data in scanner.advertisement_data():
@@ -37,7 +38,10 @@ async def collect(n_finish:int, filename_ending: str):
                 utc = datetime.now()
                 timestamp = time.time()
                 rssi = advertisement_data.rssi
-                print(f'Time in UTC: {utc}, Address: {address}, RSSI: {rssi}, timestamp: {timestamp}')
+                print(f'№{n+1} - Time in UTC: {utc}, Address: {address}, RSSI: {rssi}, timestamp: {timestamp}')
                 save_to_csv(filename, [utc, address, rssi, timestamp])
-                print('\n')
+                n += 1
+                if n == n_finish:
+                    print(f"finished collecting {n} samples")
+                    break
 
