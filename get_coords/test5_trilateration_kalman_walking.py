@@ -2,8 +2,8 @@ import math
 import numpy as np
 import csv
 import matplotlib.pyplot as plt
-from consts import *
-from util import trilateration
+from util.consts import *
+from util.util_func import trilateration
 
 #test 5
 FILENAME = './test5/timeout-5s-v2/bleak-scan-data.csv'

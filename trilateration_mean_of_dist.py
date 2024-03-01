@@ -1,7 +1,7 @@
 import csv
 import numpy as np
-from consts import *
-from util import trilateration, calc_dist
+from util.consts import RSSI_AT_1M, ADDRESSES, REF_POINTS, N
+from util.util_func import trilateration, calc_dist
 
 # test 1
 REAL_POSITION = (9.5, 7)
@@ -50,17 +50,12 @@ def determine_position(csv_file: str):
         mean_dist_ap25 = np.nanmean((np.array(dist_ap25)))
         mean_dist_ap26 = np.nanmean((np.array(dist_ap26)))
 
-        # print("RSSI values for each beacon:")
-        # print(f"AP24 = {dist_ap24}")
-        # print(f"AP25 = {dist_ap25}")
-        # print(f"AP26 = {dist_ap26}")
-
         print("\nMean values without outliners:")
         print(f"AP24={float(mean_dist_ap24)}, AP25={float(mean_dist_ap25)}, AP26={float(mean_dist_ap26)} \n")
         dist_values = [float(mean_dist_ap24), float(mean_dist_ap25), float(mean_dist_ap26)]
 
         # Determine the Squared Root Error and the Mean Squared Error 
-        position = trilateration(REF_POINTS, dist_values)
+        position = trilateration(REF_POINTS, dist_values, RSSI_AT_1M, N)
         print(f"Position: {position}")
         print(f"Real position: {REAL_POSITION}")
 

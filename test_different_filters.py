@@ -1,5 +1,7 @@
-from util import *
-from consts import *
+from util.util_func import trilateration, plot_signals
+from util.filters import gray_filter, fft_filter, kalman_filter, particle_filter
+from util.consts import N, REF_POINTS, ADDRESSES, RSSI_AT_1M
+import numpy as np
 import csv
 import math
 
@@ -59,7 +61,7 @@ def determine_position(csv_file: str):
         rssi_values = [float(mean_rssi_ap24), float(mean_rssi_ap25), float(mean_rssi_ap26)]
 
         # Determine the Squared Root Error and the Mean Squared Error 
-        position = trilateration(REF_POINTS, rssi_values)
+        position = trilateration(REF_POINTS, rssi_values, RSSI_AT_1M, N)
         print(f"Calculated position: {position}")
         print(f"Real position: {REAL_POSITION}")
 

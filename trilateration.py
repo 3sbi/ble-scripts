@@ -1,8 +1,8 @@
 import csv
 import numpy as np
 import math
-from consts import *
-from util import trilateration
+from util.consts import *
+from util.util_func import trilateration
 
 # test 1
 # REAL_POSITION = (9.5, 7)

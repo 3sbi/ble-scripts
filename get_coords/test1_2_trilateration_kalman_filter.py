@@ -2,8 +2,8 @@ import math
 import numpy as np
 import csv
 import matplotlib.pyplot as plt
-from consts import *
-from util import trilateration
+from util.consts import *
+from util.util_func import trilateration
 
 REF_POINTS = [TEST123_REF_POINT_AP24, TEST123_REF_POINT_AP25, TEST123_REF_POINT_AP26]
 
