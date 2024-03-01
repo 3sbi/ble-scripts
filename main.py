@@ -3,6 +3,7 @@ from calendar import c
 from collect_data.async_scanner import scan
 from collect_data.collect_n_samples import collect
 from util.draw import plot_occurrence_frequency
+import time
 
 def main():
     mode = input("\nEnter modes:\n" +
@@ -11,7 +12,15 @@ def main():
                  " 3 - plot for measurements (test 0)\n" +
                  "\nEnter mode: ")
     if mode == '1':
-        asyncio.run(scan())
+        ending = input('filename ending: ')
+        timer = 5
+        while True:
+            print(f'Scanning will start in {timer}')
+            timer -= 1
+            time.sleep(1)
+            if timer == 0:
+                break
+        asyncio.run(scan(ending))
     if mode == '2':
         n_measurements = input('Enter number of measurements: ')
         ending = input('filename ending: ')

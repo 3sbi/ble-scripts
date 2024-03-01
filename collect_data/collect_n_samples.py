@@ -28,7 +28,7 @@ def save_to_csv(filename:str, row: list[str|datetime|float]):
 # filename_ending is used to create different filenames easily if we are collecting multiple samples
 async def collect(n_finish:int, filename_ending: str):
     n = 0
-    filename: str = f'./test_data/test0_error_for_different_distance/{n_finish}_samples_{filename_ending}.csv'
+    filename: str = f'./data/test0_rssi_for_different_distance/{n_finish}_samples_{filename_ending}.csv'
     async with BleakScanner() as scanner:
         print("Scanning...")
         async for device, advertisement_data in scanner.advertisement_data():
