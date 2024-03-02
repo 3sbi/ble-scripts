@@ -5,21 +5,20 @@ import time
 from datetime import datetime
 from util.consts import ADDRESSES, RSSI_AT_1M
 
-filename = './bleak-scan-data.csv'
 discovered_devices_addresses: dict[str, int] = {}
 
-def create_file_with_header():
+def create_file_with_header(filename: str):
     header = ['datetime_utc', 'address', 'rssi', 'timestamp_in_seconds']
     with open(filename, 'w', encoding='UTF8', newline='') as f:
         # create the csv writer
         writer = csv.writer(f)
         writer.writerow(header)
 
-def save_to_csv(row: list[str|datetime|float]):
+def save_to_csv(filename:str, row: list[str|datetime|float]):
     # open the file in the write mode
     file_exists=os.path.isfile(filename)
     if (not file_exists):
-        create_file_with_header()
+        create_file_with_header(filename)
     with open(filename, 'a', encoding='UTF8', newline='') as f:
         # create the csv writer
         writer = csv.writer(f)
@@ -28,9 +27,10 @@ def save_to_csv(row: list[str|datetime|float]):
 
 
 # scans and saves collected data to csv file
-async def scan():
+async def scan(filename_ending):
     async with BleakScanner() as scanner:
         print("Scanning...")
+        filename = f'./scan-data_{filename_ending}.csv'
         global discovered_devices_addresses
         async for device, advertisement_data in scanner.advertisement_data():
             address = device.address.upper()
@@ -53,7 +53,7 @@ async def scan():
                 for address in smallest_deltas_addresses:
                     rssi = discovered_devices_addresses[address]
                     print(f'Time in UTC: {utc}, Address: {address}, RSSI: {rssi}, timestamp: {timestamp}')
-                    save_to_csv([utc, address, rssi, timestamp])
+                    save_to_csv(filename, [utc, address, rssi, timestamp])
                 print('\n')
                 discovered_devices_addresses = {}
 
