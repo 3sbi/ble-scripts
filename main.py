@@ -1,7 +1,7 @@
 import asyncio
 from collect_data.async_scanner import scan
 from collect_data.collect_n_samples import collect
-from util.draw import plot_occurrence_frequency
+from util.draw import plot_occurrence_frequency, plot_distance_to_rssi_correlation
 
 def main():
     mode = input("\nEnter modes:\n" +
@@ -17,6 +17,7 @@ def main():
         ending = input('filename ending: ')
         asyncio.run(collect(int(n_measurements),ending))
     if mode == '3':
+        plot_distance_to_rssi_correlation()
         plot_occurrence_frequency()
         
 

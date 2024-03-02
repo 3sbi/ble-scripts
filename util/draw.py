@@ -1,6 +1,7 @@
 import csv
 import matplotlib.pyplot as plt
 import numpy as np
+import glob
 
 
 import matplotlib.pyplot as plt
@@ -50,6 +51,32 @@ def get_rssis(filename: str) -> list[int]:
             values.append(int(row['rssi']))
     return values
 
+
+def reject_outliers(data, m = 2.):
+    d = np.abs(data - np.median(data))
+    mdev = np.median(d)
+    s = d/mdev if mdev else np.zeros(len(d))
+    return data[s<m]
+
+def plot_distance_to_rssi_correlation():
+    plt.figure()
+    plt.grid()
+    x = []
+    y = []
+    filenames = glob.glob("./data/test0_rssi_for_different_distance/3000_samples_*m.csv")
+    for filename in filenames:
+        print(filename)
+        m = filename.replace("./data/test0_rssi_for_different_distance\\3000_samples_",'').replace('m.csv','')
+        data: np.NDArray[int] = np.asarray(get_rssis(filename))
+        data = reject_outliers(data)
+        mean = np.mean(data)
+        x.append(m)
+        y.append(mean)
+    plt.plot(x, y, "go-")
+    plt.xlabel('distance, m')
+    plt.ylabel('RSSI')
+    plt.show()
+    return
 
 def plot_occurrence_frequency():
     m = 1
