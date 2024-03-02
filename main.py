@@ -2,6 +2,7 @@ import asyncio
 from collect_data.async_scanner import scan
 from collect_data.collect_n_samples import collect
 from util.draw import plot_occurrence_frequency, plot_distance_to_rssi_correlation
+import time
 
 def main():
     mode = input("\nEnter modes:\n" +
@@ -11,6 +12,13 @@ def main():
                  "\nEnter mode: ")
     if mode == '1':
         ending = input('filename ending: ')
+        timer = 5
+        while True:
+            print(f'Scanning will start in {timer}')
+            timer -= 1
+            time.sleep(1)
+            if timer == 0:
+                break
         asyncio.run(scan(ending))
     if mode == '2':
         n_measurements = input('Enter number of measurements: ')
