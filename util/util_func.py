@@ -2,12 +2,12 @@
 import numpy as np
 
 
-def calc_dist(rssi: float, rssi_at_1m:int, n: int) -> float:
+def calc_dist(rssi: float, rssi_at_1m:int | float, n: int) -> float:
     cal_d= pow(10,((rssi_at_1m - rssi)/(10*n)))
     return cal_d
 
 
-def trilateration(ref_points: list[tuple[float, float]], rssi_values: list[int]|list[float], rssi_at_1m: int, n: int) -> tuple[float, float]:
+def trilateration(ref_points: list[tuple[float, float]], rssi_values: list[int]|list[float], rssi_at_1m: int | float, n: int) -> tuple[float, float]:
     # Extract reference point coordinates and RSSI values
     (x1, y1), (x2, y2), (x3, y3) = ref_points
     r1, r2, r3 = rssi_values
