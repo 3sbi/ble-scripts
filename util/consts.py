@@ -4,17 +4,16 @@ ADDRESS_AP25 = 'E9:71:D6:A6:52:19'
 ADDRESS_AP26 = 'FA:A5:6E:E8:3D:9C'
 ADDRESS_AP30 = 'E4:02:B8:34:EC:F3'
 
-DICT_ADDRESSES = {
+ADDRESSES = {
     22: 'F3:B0:D4:A4:42:E0', 
     24: 'D7:AB:60:ED:B3:66',
     25: 'E9:71:D6:A6:52:19',
     26: 'FA:A5:6E:E8:3D:9C',
     30: 'E4:02:B8:34:EC:F3'
 }
-ADDRESSES = list(DICT_ADDRESSES.values())
 
 N=3
-RSSI_AT_1M = -49
+RSSI_AT_1M = -51
 
 # Значения местоположения маяков для тестов 1, 2, 3
 # Define reference points with known positions and RSSI values
@@ -22,22 +21,3 @@ TEST123_REF_POINT_AP24=(2, 7)
 TEST123_REF_POINT_AP25=(8.50, 7)
 TEST123_REF_POINT_AP26=(4.75, 0)
 
-
-# walking between rooms
-REF_POINT_AP22 = (0, 3)
-REF_POINT_AP24 = (7.2, 3.4)
-REF_POINT_AP25 = (11.85, 10.6)
-REF_POINT_AP26 = (1.03, 11.89)
-REF_POINT_AP30 = (6.45, 8.7)
-REF_POINTS = [REF_POINT_AP22, REF_POINT_AP24, REF_POINT_AP25, REF_POINT_AP26, REF_POINT_AP30]
-
-
-
-# значения местоположения маяков для тестов 4, 5
-TEST45_REF_POINTS = {
-    22: REF_POINT_AP22,
-    24: REF_POINT_AP24,
-    25: REF_POINT_AP25,
-    26: REF_POINT_AP26,
-    30: REF_POINT_AP30
-}

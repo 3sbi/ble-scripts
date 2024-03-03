@@ -2,6 +2,7 @@ import asyncio
 from collect_data.async_scanner import scan
 from collect_data.collect_n_samples import collect
 from util.draw import plot_occurrence_frequency, plot_distance_to_rssi_correlation
+from util.trilateration import determine_position_static
 import time
 
 def main():
@@ -9,6 +10,11 @@ def main():
                  " 1 - scanning continuously\n" + 
                  " 2 - get N number of measurements (test 0)\n" +
                  " 3 - plot for measurements (test 0)\n" +
+                 " 4 - print trilateration results (test 1 - on table) \n" +
+                 " 5 - print trilateration results (test 2 - in corner) \n" +
+                 " 6 - plot trilateration results (test 3 - move in circle) \n" +
+                 " 7 - plot trilateration results (test 4 - \"snake\") \n" +
+                 " 8 - plot trilateration results (test 5 - go outside of cabinet) \n" +
                  "\nEnter mode: ")
     if mode == '1':
         ending = input('filename ending: ')
@@ -25,9 +31,27 @@ def main():
         ending = input('filename ending: ')
         asyncio.run(collect(int(n_measurements),ending))
     if mode == '3':
-        plot_distance_to_rssi_correlation()
-        plot_occurrence_frequency()
-        
+        subdirectory: str = input("\nEnter subdirectory: ")
+        plot_occurrence_frequency(subdirectory)
+        plot_distance_to_rssi_correlation(subdirectory)
+    if mode == '4':
+        filename = "./data/test1_on_table/scan_data.csv"
+        real_position = (6.5, 1.4)
+        ref_points: dict[int,tuple[float, float]] = {
+            24: (2, 6.82),
+            25: (8.5, 6.82),
+            26: (4.75, 0)
+        }
+        determine_position_static(filename, real_position, ref_points)
+    if mode == '5':
+        filename = "./data/test2_in_corner/scan_data.csv"
+        real_position = (8.5, 6.82)
+        ref_points: dict[int,tuple[float, float]] = {
+            30: (2, 6.82),
+            25: (7.5, 6.82),
+            26: (4.75, 0)
+        }
+        determine_position_static(filename, real_position, ref_points)
 
 
 if __name__ == "__main__":

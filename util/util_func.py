@@ -1,4 +1,7 @@
 
+import numpy as np
+
+
 def calc_dist(rssi: float, rssi_at_1m:int, n: int) -> float:
     cal_d= pow(10,((rssi_at_1m - rssi)/(10*n)))
     return cal_d
@@ -27,3 +30,11 @@ def trilateration(ref_points: list[tuple[float, float]], rssi_values: list[int]|
     x = (C*E - F*B) / (A*E - B*D)
     y = (C*D - A*F) / (B*D - A*E)
     return x, y
+
+
+
+def remove_outliers(data: np.ndarray, m: float = 2.):
+    d = np.abs(data - np.median(data))
+    mdev = np.median(d)
+    s = d/mdev if mdev else np.zeros(len(d))
+    return data[s<m]

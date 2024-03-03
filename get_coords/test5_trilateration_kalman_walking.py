@@ -81,8 +81,8 @@ class KalmanFilter:
 def get_ref_points_by_addresses(addresses):
     ref_points = []
     for address in addresses:
-        index = list(DICT_ADDRESSES.values()).index(address)
-        ref_point_number = list(DICT_ADDRESSES.keys())[index]
+        index = list(ADDRESSES.values()).index(address)
+        ref_point_number = list(ADDRESSES.keys())[index]
         point = TEST5_REF_POINTS.get(ref_point_number)
         ref_points.append(point)
     return ref_points
