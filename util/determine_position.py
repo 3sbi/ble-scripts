@@ -44,13 +44,3 @@ def determine_position_static(csv_filename: str, real_position: tuple[float, flo
         print(f"SQE={SQE}, MSE={MSE}")
 
 
-
-def plot_route(csv_filename: str, ref_points: dict[str, tuple[float, float]]):
-    with open(csv_filename, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            # TODO
-            row['rssi']
-
-
-

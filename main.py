@@ -2,7 +2,8 @@ import asyncio
 from collect_data.async_scanner import scan
 from collect_data.collect_n_samples import collect
 from util.draw import plot_occurrence_frequency, plot_distance_to_rssi_correlation
-from util.trilateration import determine_position_static
+from util.determine_position import determine_position_static
+from util.plot_walking_track import plot_walking_track
 import time
 
 def main():
@@ -17,7 +18,7 @@ def main():
                  " 5 - plot trilateration results (test 5 - go outside of cabinet) \n" +
                  "\nEnter mode: ")
     if mode == '0':
-        ending = input('filename ending: ')
+        ending: str = input('filename ending: ')
         timer = 5
         while True:
             print(f'Scanning will start in {timer}')
@@ -35,9 +36,9 @@ def main():
         plot_occurrence_frequency(subdirectory)
         plot_distance_to_rssi_correlation(subdirectory)
     if mode == '1':
-        filename = "./data/test1_on_table/scan_data.csv"
+        filename: str = "./data/test1_on_table/scan_data.csv"
         real_position = (6.5, 1.4)
-        ref_points: dict[int,tuple[float, float]] = {
+        ref_points: dict[int, tuple[float, float]] = {
             24: (2, 6.82),
             25: (8.1, 6.82),
             26: (4.75, 0)
@@ -46,22 +47,77 @@ def main():
     if mode == '2':
         type = input("old or new? ")
 
-        filename = "./data/test2_in_corner/scan_data.csv"
+        filename: str = "./data/test2_in_corner/scan_data.csv"
         real_position = (8.5, 6.82)
-        ref_points: dict[int,tuple[float, float]] = {
+        ref_points: dict[int, tuple[float, float]] = {
             30: (2, 6.82),
             25: (7.5, 6.82),
             26: (4.75, 0)
         }
         if (type == 'old'):
-            filename = "./data/test2_in_corner/old_scan_data.csv"
-            ref_points: dict[int,tuple[float, float]] = {
+            filename: str = "./data/test2_in_corner/old_scan_data.csv"
+            ref_points: dict[int, tuple[float, float]] = {
                 24: (2, 6.82),
-                25: (8.5, 6.82),
+                25: (7.5, 6.82),
                 26: (4.75, 0)
             }
         determine_position_static(filename, real_position, ref_points)
+    if mode == '3':
+        test_number = input("test number: 1, 2 or 3? ")
+        filename: str = f"./data/test3_move_in_circle/scan_data_v{test_number}.csv"
+        ref_points: dict[int, tuple[float, float]] = {
+            24: (2, 6.82),
+            25: (7.5, 6.82),
+            26: (4.75, 0)
+        }
+        real_positions: list[tuple[float, float]] = [
+            (8.0, 0.7), 
+            (0.6, 0.7),
+            (0.6, 5.82),
+            (8.0, 5.82)
+        ]
+        plot_walking_track(filename, ref_points, real_positions)
+    if mode == '4':
+        test_number = input("test number: 1 or 2? ")
+        filename: str = f"./data/test4_move_snake/scan_data_v{test_number}.csv"
+        ref_points: dict[int, tuple[float, float]] = {
+            24: (2, 6.82),
+            25: (7.5, 6.82),
+            26: (4.75, 0)
+        }
+        if (test_number == '2'):
+            ref_points[30] = ref_points.pop(24)
 
+        real_positions: list[tuple[float, float]] = [
+            (8.0, 0.7),
+            (8.0, 5.82),
+            (0.6, 5.82),
+            (0.6, 2.82),
+            (8.0, 2.82),
+            (8.0, 0.7)
+        ]
+        plot_walking_track(filename, ref_points, real_positions)
+    if mode == '5':
+        test_number = input("test number: 1, 2 or 3? ")
+        filename: str = f"./data/test5_go_outside_of_cabinet/scan_data_v{test_number}.csv"
+        real_positions: list[tuple[float, float]] = [
+            (10.43, 5.82),
+            (0.5, 4.51),
+            (0.5, 0.5),
+            (1.93, 0.5),
+            (1.93, 4.51),
+            (3.43, 4.51),
+            (3.43, 0.7),
+            (10.43, 0.7),
+        ]
+        ref_points: dict[int, tuple[float, float]] = {
+            22: (2.43, 2.87),
+            24: (0, 0),
+            25: (9.93, 6.82),
+            26: (7.18, 0),
+            30: (4.43, 6.82)
+        }
+        plot_walking_track(filename, ref_points, real_positions)
 
 if __name__ == "__main__":
     try:
