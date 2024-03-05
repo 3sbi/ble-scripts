@@ -2,8 +2,8 @@ import asyncio
 from collect_data.async_scanner import scan
 from collect_data.collect_n_samples import collect
 from util.draw import plot_occurrence_frequency, plot_distance_to_rssi_correlation
-from util.determine_position import determine_position_static
-from util.plot_walking_track import plot_walking_track
+from get_coords.determine_position import determine_position_static
+from get_coords.plot_walking_track import plot_walking_track
 import time
 
 def main():
@@ -93,8 +93,8 @@ def main():
             (8.0, 5.82),
             (0.6, 5.82),
             (0.6, 2.82),
-            (8.0, 2.82),
-            (8.0, 0.7)
+            (7.8, 2.82),
+            (7.8, 0.7)
         ]
         plot_walking_track(filename, ref_points, real_positions)
     if mode == '5':

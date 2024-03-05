@@ -2,6 +2,7 @@ import csv
 import matplotlib.pyplot as plt
 import numpy as np
 from util.consts import ADDRESSES, N, RSSI_AT_1M
+from util.kalman import KalmanFilter
 from util.util_func import trilateration 
 
 def add_plot_with_quivers(positions:list[tuple[float, float]], color: str, label:str):
@@ -35,6 +36,7 @@ def get_ref_points_by_addresses(addresses: list[str], all_ref_points: dict[int, 
 
 
 def plot_walking_track(csv_filename: str, all_ref_points: dict[int, tuple[float, float]], real_positions:  list[tuple[float, float]]):
+    kf = KalmanFilter(0.05, 0.2)
     timestamps = []
     positions = []
     with open(csv_filename, 'r') as file:
@@ -51,6 +53,8 @@ def plot_walking_track(csv_filename: str, all_ref_points: dict[int, tuple[float,
                 addresses = [o['address'] for o in matches]
                 ref_points = get_ref_points_by_addresses(addresses, all_ref_points)
                 position: tuple[float, float] = trilateration(ref_points, rssi_values, RSSI_AT_1M, N)
+                
+                position = (kf.filter(position[0]), kf.filter(position[1]))
                 if position[0] < 0:
                     position =(0, position[1])
                 if position[1] < 0:
