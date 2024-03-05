@@ -4,19 +4,21 @@ import numpy as np
 from util.consts import ADDRESSES, N, RSSI_AT_1M
 from util.util_func import trilateration 
 
-def plot_track(positions: list[tuple[float, float]], real_positions:  list[tuple[float, float]]):
+def add_plot_with_quivers(positions:list[tuple[float, float]], color: str, label:str):
     x = [pos[0] for pos in positions]
     y = [pos[1] for pos in positions]
-    x_real = [pos[0] for pos in real_positions]
-    y_real = [pos[1] for pos in real_positions]
     u = np.diff(x)
     v = np.diff(y)
     pos_x = x[:-1] + u/2
     pos_y = y[:-1] + v/2
     norm = np.sqrt(u**2+v**2)
-    plt.plot(x, y, marker="o", label="track")
-    plt.plot(x_real, y_real, label='real')
-    plt.quiver(pos_x, pos_y, u/norm, v/norm, angles="xy", zorder=5, pivot="mid")
+    plt.plot(x, y, marker="o", label=label, color=color)
+    plt.quiver(pos_x, pos_y, u/norm, v/norm, angles="xy", zorder=5, pivot="mid", color=color, headwidth=2, headlength=5)
+
+
+def plot_track(positions: list[tuple[float, float]], real_positions:  list[tuple[float, float]]):
+    add_plot_with_quivers(positions=positions, color="#1f77b4", label="track")
+    add_plot_with_quivers(positions=real_positions, color="orange", label="real")
     plt.legend()
     plt.title("Трек перемещения")
     plt.show()
