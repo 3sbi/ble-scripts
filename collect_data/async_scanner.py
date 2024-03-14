@@ -36,7 +36,7 @@ async def scan(filename_ending):
         async for device, advertisement_data in scanner.advertisement_data():
             address = device.address.upper()
             # save device it dict if it's address is in listed VEGA addresses
-            if (address in ADDRESSES):
+            if (address in ADDRESSES.values()):
                 print(f'found beacon with address={address} and RSSI={advertisement_data.rssi}')
                 save_to_csv(log_filename, [datetime.now(), address, advertisement_data.rssi, time.time()])
                 discovered_devices_addresses[address] = (advertisement_data.rssi)
