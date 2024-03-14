@@ -32,7 +32,7 @@ def determine_position_static(csv_filename: str, real_position: tuple[float, flo
         # beacon_1_rssis = remove_outliers(np.array(beacon_1_rssis)).tolist()
         # beacon_2_rssis = remove_outliers(np.array(beacon_2_rssis)).tolist()
         rssi_values = [float(np.nanmean(np.array(beacon_0_rssis))), float(np.nanmean(np.array(beacon_1_rssis))), float(np.nanmean(np.array(beacon_2_rssis)))]
-        print(rssi_values)
+        print(f'RSSI values={rssi_values}')
         
         # Determine the Squared Root Error and the Mean Squared Error 
         position = trilateration(ref_points, rssi_values, RSSI_AT_1M, N)

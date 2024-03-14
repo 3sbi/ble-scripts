@@ -1,9 +1,9 @@
 import asyncio
 from collect_data.async_scanner import scan
 from collect_data.collect_n_samples import collect
-from util.draw import plot_occurrence_frequency, plot_distance_to_rssi_correlation
+from util.draw import plot_occurrence_frequency, plot_distance_to_rssi_correlation, plot_rssi_to_time
 from get_coords.determine_position import determine_position_static
-from get_coords.plot_walking_track import plot_walking_track
+from get_coords.plot_walking_track import plot_walking_track, plot_walking_track_relative_meters
 import time
 
 def main():
@@ -35,6 +35,7 @@ def main():
         subdirectory: str = input("\nEnter subdirectory: ")
         plot_occurrence_frequency(subdirectory)
         plot_distance_to_rssi_correlation(subdirectory)
+        plot_rssi_to_time(subdirectory)
     if mode == '1':
         filename: str = "./data/test1_on_table/scan_data.csv"
         real_position = (6.5, 1.4)
@@ -76,7 +77,7 @@ def main():
             (0.6, 5.82),
             (8.0, 5.82)
         ]
-        plot_walking_track(filename, ref_points, real_positions)
+        plot_walking_track_relative_meters(filename, ref_points, real_positions, mode)
     if mode == '4':
         test_number = input("test number: 1 or 2? ")
         filename: str = f"./data/test4_move_snake/scan_data_v{test_number}.csv"
@@ -96,7 +97,7 @@ def main():
             (7.8, 2.82),
             (7.8, 0.7)
         ]
-        plot_walking_track(filename, ref_points, real_positions)
+        plot_walking_track_relative_meters(filename, ref_points, real_positions, mode)
     if mode == '5':
         test_number = input("test number: 1, 2 or 3? ")
         filename: str = f"./data/test5_go_outside_of_cabinet/scan_data_v{test_number}.csv"
@@ -117,7 +118,7 @@ def main():
             26: (7.18, 0),
             30: (4.43, 6.82)
         }
-        plot_walking_track(filename, ref_points, real_positions)
+        plot_walking_track_relative_meters(filename, ref_points, real_positions, mode)
 
 if __name__ == "__main__":
     try:

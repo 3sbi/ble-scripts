@@ -60,20 +60,41 @@ def plot_distance_to_rssi_correlation(subdirectory: str):
     y = []
     filenames = glob.glob(f'./data/test0_rssi_to_distance_correlation/{subdirectory}/*.csv')
     for filename in filenames:
-        m = filename.split('_samples_').pop().replace("m.csv", '')
+        meters = filename.split('_samples_').pop().replace("m.csv", '')
         data = np.array(get_rssis(filename))
         data = remove_outliers(data)
-        rssi = np.mean(data)
-        x.append(m)
+        rssi = np.median(data)
+        x.append(meters)
         y.append(rssi)
     plt.plot(x, y, "go-")
-    plt.xlabel('distance, m')
-    plt.ylabel('RSSI')
+    plt.xlabel('Расстояние, м.', fontdict={"fontsize":20})
+    plt.ylabel('RSSI', fontdict={"fontsize":20})
     plt.title('Correlation')
     plt.show()
     return
 
-# y = −0.0556x3+1.0120x2−7.3196x−46.8543
+def plot_rssi_to_time(subdirectory: str):
+    plt.figure()
+    x = []
+    y = []
+    timestamp: float = 0
+    filename = glob.glob(f'./data/test0_rssi_to_distance_correlation/{subdirectory}/*_3m.csv')[0]
+    with open(filename, 'r') as file:
+        reader = csv.DictReader(file)
+        for i, row in enumerate(reader):
+            if (i < 120):
+                continue
+            if (i == 120):
+                timestamp = float(row['timestamp_in_seconds'])
+            if i > 190:
+                break
+            x.append(float(row['timestamp_in_seconds']) - timestamp)
+            y.append(int(row['rssi']))
+    plt.plot(x, y)
+    plt.xlabel('Время, сек', fontdict={"fontsize": 20})
+    plt.ylabel('RSSI', fontdict={"fontsize": 20})
+    plt.show()
+    return
 
 def plot_occurrence_frequency(subdirectory: str):
     filenames = glob.glob(f'./data/test0_rssi_to_distance_correlation/{subdirectory}/*.csv')
@@ -86,8 +107,18 @@ def plot_occurrence_frequency(subdirectory: str):
         if index > len(filenames)-1 and (len(filenames) % 2) != 0:
             continue
         data = np.asarray(get_rssis(filename))
+        count: int = 0
+        if m == 1:
+            count = np.count_nonzero(data < 60) + np.count_nonzero(np.logical_and(data > -56, data < -53)) + np.count_nonzero(data >  -49)
+        if m == 2:
+            count = np.count_nonzero(data < -48) + np.count_nonzero(data > -44)
+        if m == 3:
+            count = np.count_nonzero(data < -72) + np.count_nonzero(np.logical_and(data > -68, data < -48)) + np.count_nonzero(data > -59)
+        if m == 4:
+            count = np.count_nonzero(data < -82) + np.count_nonzero(np.logical_and(data > -77, data < -74)) + np.count_nonzero(data > 68)
+        print(f'Выбросов на {m} м. от маяка: {count / len(data):.4f}%')
         ax.hist(data, bins=np.arange(data.min(), data.max()+1))
-        ax.set_title(f'{m} m. from beacon')
+        ax.set_title(f'{m} м. от маяка')
     plt.show()
 
 

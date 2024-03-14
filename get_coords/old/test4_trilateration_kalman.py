@@ -50,7 +50,7 @@ def get_ref_points_by_addresses(addresses):
 
 
 def determine_position(csv_file: str):
-    kf = KalmanFilter(0.001, 0.2)
+    kf = KalmanFilter(0.02, 0.15)
     timestamps = []
     sqes = []
     with open(csv_file, 'r') as file:

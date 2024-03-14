@@ -1,22 +1,22 @@
-
+from util.consts import RSSI_AT_1M, N 
 import numpy as np
 
 
-def calc_dist(rssi: float, rssi_at_1m:int | float, n: int) -> float:
+def calc_dist(rssi: float, rssi_at_1m: int | float, n: int) -> float:
     cal_d= pow(10,((rssi_at_1m - rssi)/(10*n)))
     return cal_d
 
 
-def trilateration(ref_points: list[tuple[float, float]], rssi_values: list[int]|list[float], rssi_at_1m: int | float, n: int) -> tuple[float, float]:
+def trilateration(ref_points: list[tuple[float, float]], rssi_values: list[int] | list[float]) -> tuple[float, float]:
     # Extract reference point coordinates and RSSI values
     (x1, y1), (x2, y2), (x3, y3) = ref_points
     r1, r2, r3 = rssi_values
 
 
     # Calculate distances from RSSI values using the log-distance path loss model
-    d1 = calc_dist(r1, rssi_at_1m, n)
-    d2 = calc_dist(r2, rssi_at_1m, n)
-    d3 = calc_dist(r3, rssi_at_1m, n)
+    d1 = calc_dist(r1, RSSI_AT_1M, N)
+    d2 = calc_dist(r2, RSSI_AT_1M, N)
+    d3 = calc_dist(r3, RSSI_AT_1M, N)
 
     # Calculate trilateration coefficients
     A = 2 * x2 - 2 * x1
@@ -38,3 +38,48 @@ def remove_outliers(data: np.ndarray, m: float = 2.):
     mdev = np.median(d)
     s = d/mdev if mdev else np.zeros(len(d))
     return data[s<m]
+
+
+RELATIVE_METERS: dict[int, tuple[int, int]] = {
+    1: [[-60, -55], [-52, -49]],
+    2: [[-48, -44]],
+    3: [[-72, -68], [-64, -59]],
+    4: [[-82, -77], [-74, -68]],
+}
+
+def rssi_to_relative_meters(rssi: float) -> int | None:
+    for key, segments in RELATIVE_METERS.items():
+        for segment in segments:
+            (min, max) = segment
+            if (rssi >= min and rssi <= max):
+                return key
+    return None
+
+
+def relative_meters_method(ref_points: list[tuple[float, float]], rssi_values: list[int] | list[float]) -> tuple[float, float] | None:
+    # Extract reference point coordinates and RSSI values
+    (x1, y1), (x2, y2), (x3, y3) = ref_points
+    r1, r2, r3 = rssi_values
+
+    # Calculate distances
+    d1 = rssi_to_relative_meters(r1)
+    d2 = rssi_to_relative_meters(r2)
+    d3 = rssi_to_relative_meters(r3)
+    if (d1 is None or d2 is None or d3 is None):
+        return None
+        # return trilateration(ref_points,rssi_values)
+
+    # Calculate trilateration coefficients
+    A = 2 * x2 - 2 * x1
+    B = 2 * y2 - 2 * y1
+    C = d1**2 - d2**2 - x1**2 + x2**2 - y1**2 + y2**2
+    D = 2 * x3 - 2 * x2
+    E = 2 * y3 - 2 * y2
+    F = d2**2 - d3**2 - x2**2 + x3**2 - y2**2 + y3**2
+
+    # Calculate position coordinates
+    x = (C*E - F*B) / (A*E - B*D)
+    y = (C*D - A*F) / (B*D - A*E)
+    return x, y
+
+# заявка 4359399
