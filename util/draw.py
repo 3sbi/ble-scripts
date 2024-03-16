@@ -69,7 +69,7 @@ def plot_distance_to_rssi_correlation(subdirectory: str):
     plt.plot(x, y, "go-")
     plt.xlabel('Расстояние, м.', fontdict={"fontsize":20})
     plt.ylabel('RSSI', fontdict={"fontsize":20})
-    plt.title('Correlation')
+    plt.title('Корреляция')
     plt.show()
     return
 
@@ -130,3 +130,16 @@ def plot_rssi_for_beacon(signal):
     plot_signals([signal, signal_gray_filter, signal_fft_filter, signal_kalman_filter, signal_particle_filter],
                 ['signal', 'gray_filtered_signal', 'fft_filtered_signal', 'kalman_filtered_signal',
                 'particles_filtered_signal'])
+    
+
+def plot_occurrence_frequencies_for_different_beacons():
+    filenames = glob.glob(f'./data/test0_rssi_to_distance_correlation/balcony/3000_samples_3m*.csv')
+    fig, axes = plt.subplots(nrows=1, ncols=len(filenames))
+    for index, ax in enumerate(axes.flatten()):
+        filename = filenames[index]
+        data = np.asarray(get_rssis(filename))
+        ax.hist(data, bins=np.arange(data.min(), data.max()+1))
+        ax.xaxis.set_ticks(np.arange(min(data), max(data)+1, 1.0))
+        ax.set_title('Маяк #30' if 'beacon30' in filename else 'Маяк #26', fontdict={"fontsize": 20})
+    fig.suptitle("Распределение RSSI на 3м. для разных маяков", fontsize=20)
+    plt.show()

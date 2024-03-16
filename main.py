@@ -1,7 +1,7 @@
 import asyncio
 from collect_data.async_scanner import scan
 from collect_data.collect_n_samples import collect
-from util.draw import plot_occurrence_frequency, plot_distance_to_rssi_correlation, plot_rssi_to_time
+from util.draw import plot_occurrence_frequencies_for_different_beacons, plot_occurrence_frequency, plot_distance_to_rssi_correlation, plot_rssi_to_time
 from get_coords.determine_position import determine_position_static
 from get_coords.plot_walking_track import plot_walking_track, plot_walking_track_relative_meters
 import time
@@ -11,6 +11,7 @@ def main():
                  " 0 - scanning continuously\n" + 
                  " 01 - get N number of measurements (test 0)\n" +
                  " 02 - plot for measurements (test 0)\n" +
+                 " 03 - plot frequencies for different beacons (test 0) \n"
                  " 1 - print trilateration results (test 1 - on table) \n" +
                  " 2 - print trilateration results (test 2 - in corner) \n" +
                  " 3 - plot trilateration results (test 3 - move in circle) \n" +
@@ -36,6 +37,8 @@ def main():
         plot_occurrence_frequency(subdirectory)
         plot_distance_to_rssi_correlation(subdirectory)
         plot_rssi_to_time(subdirectory)
+    if mode == '03':
+        plot_occurrence_frequencies_for_different_beacons()
     if mode == '1':
         filename: str = "./data/test1_on_table/scan_data.csv"
         real_position = (6.5, 1.4)
