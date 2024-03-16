@@ -18,6 +18,6 @@ RSSI_AT_1M: float = -50
 # Значения местоположения маяков для тестов 1, 2, 3
 # Define reference points with known positions and RSSI values
 TEST123_REF_POINT_AP24=(2, 7)
-TEST123_REF_POINT_AP25=(8.50, 7)
+TEST123_REF_POINT_AP25=(7.50, 7)
 TEST123_REF_POINT_AP26=(4.75, 0)
 
