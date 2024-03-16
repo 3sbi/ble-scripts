@@ -1,7 +1,7 @@
 import csv
 import numpy as np
 import math
-from util.consts import RSSI_AT_1M, N, ADDRESSES
+from util.consts import ADDRESSES
 from util.util_func import remove_outliers, trilateration
 
 
@@ -35,7 +35,7 @@ def determine_position_static(csv_filename: str, real_position: tuple[float, flo
         print(f'RSSI values={rssi_values}')
         
         # Determine the Squared Root Error and the Mean Squared Error 
-        position = trilateration(ref_points, rssi_values, RSSI_AT_1M, N)
+        position = trilateration(ref_points, rssi_values)
         print(f"Calculated position: {position}")
         print(f"Real position: {real_position}")
 
