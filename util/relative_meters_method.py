@@ -1,10 +1,9 @@
-
-RELATIVE_METERS: dict[float, tuple[int, int]] = {
-    1: [-50.50, -39.00],
-    2: [-57.00, -50.50],
-    3: [-62.50, -57.00],
-    4.5: [-61.50 ,-62.50],
-    6: [-62.50, -61.50],
+RELATIVE_METERS: dict[float, tuple[float, float]] = {
+    1: (-50.50, -39.00),
+    2: (-57.00, -50.50),
+    3: (-62.50, -57.00),
+    4.5: (-61.50 ,-62.50),
+    6: (-62.50, -61.50),
 }
 
 def rssi_to_relative_meters(rssi: float) -> float | None:

@@ -7,12 +7,6 @@ from util.consts import N, RSSI_AT_1M
 from util.filters import gray_filter, fft_filter, kalman_filter, particle_filter
 from util.util_func import remove_outliers
 
-def get_mode(a: np.array):
-    (_, idx, counts) = np.unique(a, return_index=True, return_counts=True)
-    index = idx[np.argmax(counts)]
-    mode = a[index]
-    return mode
-
 def plot_signals(signals, labels):
 
     """

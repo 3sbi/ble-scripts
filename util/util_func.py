@@ -37,5 +37,3 @@ def remove_outliers(data: np.ndarray, m: float = 2.):
     mdev = np.median(d)
     s = d/mdev if mdev else np.zeros(len(d))
     return data[s<m]
-
-
