@@ -21,24 +21,16 @@ def plot_signals(signals, labels):
         - display plot
 
     """
-
     alphas = [1, 0.45, 0.45, 0.45, 0.45]      # just some opacity values to facilitate visualization
-
     lenght = np.shape(signals)[1]             # time lenght of original and filtered signals
-
     plt.figure()
-
     for j, sig in enumerate(signals):          # iterates on all signals
-
         plt.plot(range(lenght), sig, '-o', label=labels[j], markersize=2, alpha=alphas[j])
-
     plt.grid()
-
     plt.ylabel('RSSI')
     plt.xlabel('time')
     plt.legend()
     plt.show()
-
     return
 
 
@@ -147,6 +139,9 @@ def plot_occurrence_frequencies_for_different_beacons():
         data = np.asarray(get_rssis(filename))
         ax.hist(data, bins=np.arange(data.min(), data.max()+1))
         ax.xaxis.set_ticks(np.arange(min(data), max(data)+1, 1.0))
-        ax.set_title('Маяк #30' if 'beacon30' in filename else 'Маяк #26', fontdict={"fontsize": 20})
+        title = 'Маяк #30' if 'beacon30' in filename else 'Маяк #26'
+        if ('beacon22' in filename):
+            title = 'Маяк #22'
+        ax.set_title(title, fontdict={"fontsize": 20})
     fig.suptitle("Распределение RSSI на 3м. для разных маяков", fontsize=20)
     plt.show()
