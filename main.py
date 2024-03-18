@@ -78,7 +78,8 @@ def main():
             (8.0, 0.7), 
             (0.6, 0.7),
             (0.6, 5.82),
-            (8.0, 5.82)
+            (8.0, 5.82),
+            (8.0, 0.7), 
         ]
         plot_walking_track_relative_meters(filename, ref_points, real_positions, mode)
     if mode == '4':

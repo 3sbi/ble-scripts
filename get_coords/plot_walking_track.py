@@ -5,7 +5,8 @@ import numpy as np
 from util.consts import ADDRESSES, ADDRESS_AP30, ADDRESS_AP22, ADDRESS_AP24, ADDRESS_AP25, ADDRESS_AP26
 from util.kalman import KalmanFilter
 from adjustText import adjust_text
-from util.util_func import trilateration, relative_meters_method
+from util.util_func import trilateration
+from util.relative_meters_method import relative_meters_method
 
 def add_plot_with_quivers(positions:list[tuple[float, float]], color: str, label:str):
     x = [pos[0] for pos in positions]
@@ -20,8 +21,8 @@ def add_plot_with_quivers(positions:list[tuple[float, float]], color: str, label
 
 
 def plot_track(positions: list[tuple[float, float]], real_positions:  list[tuple[float, float]], annotations: list[str]):
-    add_plot_with_quivers(positions=positions, color="#1f77b4", label="track")
-    add_plot_with_quivers(positions=real_positions, color="orange", label="real")
+    add_plot_with_quivers(positions=positions, color="#1f77b4", label="Результат трилатерации")
+    add_plot_with_quivers(positions=real_positions, color="orange", label="Траектория перемещения")
     texts: list[Text] = []
     for index, annotation in enumerate(annotations):
         (x, y) = positions[index]
@@ -30,7 +31,7 @@ def plot_track(positions: list[tuple[float, float]], real_positions:  list[tuple
     y = [o[1] for o in positions]
     adjust_text(texts, arrowprops=dict(arrowstyle="->", color='r', lw=0.5))
     plt.legend()
-    plt.title("Трек перемещения")
+    plt.title(f"Трек перемещения")
     plt.show()
 
 

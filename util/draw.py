@@ -2,12 +2,16 @@ import csv
 import matplotlib.pyplot as plt
 import numpy as np
 import glob
-import matplotlib.pyplot as plt
-import numpy as np
 import math
-
+from util.consts import N, RSSI_AT_1M
 from util.filters import gray_filter, fft_filter, kalman_filter, particle_filter
 from util.util_func import remove_outliers
+
+def get_mode(a: np.array):
+    (_, idx, counts) = np.unique(a, return_index=True, return_counts=True)
+    index = idx[np.argmax(counts)]
+    mode = a[index]
+    return mode
 
 def plot_signals(signals, labels):
 
@@ -56,7 +60,7 @@ def get_rssis(filename: str) -> list[int]:
 def plot_distance_to_rssi_correlation(subdirectory: str):
     plt.figure()
     plt.grid()
-    x = []
+    x: list[str] = []
     y = []
     filenames = glob.glob(f'./data/test0_rssi_to_distance_correlation/{subdirectory}/*.csv')
     for filename in filenames:
@@ -66,10 +70,19 @@ def plot_distance_to_rssi_correlation(subdirectory: str):
         rssi = np.median(data)
         x.append(meters)
         y.append(rssi)
-    plt.plot(x, y, "go-")
+    plt.plot(x, y, "go-", label="Медианное значение с тестовые данных")
+    
+    y_real = []
+    for value in x:
+        distance = int(value)
+        rssi = -10 * N * math.log10(distance) + RSSI_AT_1M
+        y_real.append(rssi)
+
+    plt.plot(x, y_real, "yo-", label="значение по формуле rssi=-10*N*log10(distance)+RSSI_AT_1M")
     plt.xlabel('Расстояние, м.', fontdict={"fontsize":20})
     plt.ylabel('RSSI', fontdict={"fontsize":20})
     plt.title('Корреляция')
+    plt.legend()
     plt.show()
     return
 

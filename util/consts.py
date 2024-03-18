@@ -13,7 +13,7 @@ ADDRESSES = {
 }
 
 N=3
-RSSI_AT_1M: float = -50
+RSSI_AT_1M: float = -49
 
 # Значения местоположения маяков для тестов 1, 2, 3
 # Define reference points with known positions and RSSI values
