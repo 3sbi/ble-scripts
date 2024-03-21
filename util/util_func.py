@@ -1,13 +1,15 @@
-from util.consts import RSSI_AT_1M, N 
+from util.consts import ORIGIN_FOR_BG_IMAGE, RSSI_AT_1M, N
 import numpy as np
 
 
 def calc_dist(rssi: float, rssi_at_1m: int | float, n: int) -> float:
-    cal_d= pow(10,((rssi_at_1m - rssi)/(10*n)))
+    cal_d = pow(10, ((rssi_at_1m - rssi) / (10 * n)))
     return cal_d
 
 
-def trilateration(ref_points: list[tuple[float, float]], rssi_values: list[int] | list[float]) -> tuple[float, float]:
+def trilateration(
+    ref_points: list[tuple[float, float]], rssi_values: list[int] | list[float]
+) -> tuple[float, float]:
     # Extract reference point coordinates and RSSI values
     (x1, y1), (x2, y2), (x3, y3) = ref_points
     rssi_1, rssi_2, rssi_3 = rssi_values
@@ -26,14 +28,17 @@ def trilateration(ref_points: list[tuple[float, float]], rssi_values: list[int] 
     F = d2**2 - d3**2 - x2**2 + x3**2 - y2**2 + y3**2
 
     # Calculate position coordinates
-    x = (C*E - F*B) / (A*E - B*D)
-    y = (C*D - A*F) / (B*D - A*E)
+    x = (C * E - F * B) / (A * E - B * D)
+    y = (C * D - A * F) / (B * D - A * E)
     return x, y
 
 
-
-def remove_outliers(data: np.ndarray, m: float = 2.):
+def remove_outliers(data: np.ndarray, m: float = 2.0):
     d = np.abs(data - np.median(data))
     mdev = np.median(d)
-    s = d/mdev if mdev else np.zeros(len(d))
-    return data[s<m]
+    s = d / mdev if mdev else np.zeros(len(d))
+    return data[s < m]
+
+# если добавляем на фон картинку помещения, то начало координат смещается чуть выше из-за наличия стены
+def add_origin(pos: tuple[float, float]) -> tuple[float, float]:
+    return (pos[0] + ORIGIN_FOR_BG_IMAGE[0], pos[1] + ORIGIN_FOR_BG_IMAGE[1])

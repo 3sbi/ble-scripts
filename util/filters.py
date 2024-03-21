@@ -1,7 +1,7 @@
 import numpy as np
 
-def gray_filter(signal, N=15):
 
+def gray_filter(signal, N=15):
     """
     Implementation of Gray filter.
     Takes a signal and filter parameters and return the filtered signal.
@@ -16,28 +16,31 @@ def gray_filter(signal, N=15):
 
     predicted_signal = []
 
-    for j in range(0, np.shape(signal)[0], N):    # iterates on the entire signal, taking steps by N (window size)
-
-        N = np.minimum(N, np.shape(signal)[0]-j)  # just in case we are at signal final and N samples are not available
+    for j in range(
+        0, np.shape(signal)[0], N
+    ):  # iterates on the entire signal, taking steps by N (window size)
+        N = np.minimum(
+            N, np.shape(signal)[0] - j
+        )  # just in case we are at signal final and N samples are not available
 
         R_0 = np.zeros(N)
-        R_0[:] = signal[j:j+N]                     # saves in R_0 signal values of corresponding window size
+        R_0[:] = signal[
+            j : j + N
+        ]  # saves in R_0 signal values of corresponding window size
 
         R_1 = []
 
         for i in range(N):
-
-            R_1.append((np.cumsum(R_0[0:i+1]))[i])  # calculates R_1
+            R_1.append((np.cumsum(R_0[0 : i + 1]))[i])  # calculates R_1
 
         # calculates gray filter solution
 
         # for further details about filter resolution check kayacan2010
 
-        B = (np.matrix([np.ones((N-1)), np.ones((N-1))])).T
+        B = (np.matrix([np.ones((N - 1)), np.ones((N - 1))])).T
 
-        for k in range(N-1):
-
-            B[k, 0] = -0.5 * (R_1[k+1] + R_1[k])
+        for k in range(N - 1):
+            B[k, 0] = -0.5 * (R_1[k + 1] + R_1[k])
 
         X_n = np.matrix(np.asarray(R_0[1:])).T
 
@@ -48,14 +51,15 @@ def gray_filter(signal, N=15):
 
         X_ = R_0[0]
         predicted_signal.append(X_)
-        for i in range(1, N):                                  # update predicted signal with this window calculation
-            predicted_signal.append((((R_0[0] - u/a) * np.exp(-a * (i - 1)))*(1 - np.exp(a))))
+        for i in range(1, N):  # update predicted signal with this window calculation
+            predicted_signal.append(
+                (((R_0[0] - u / a) * np.exp(-a * (i - 1))) * (1 - np.exp(a)))
+            )
 
     return predicted_signal
 
 
 def fft_filter(signal, N=8, M=2):
-
     """
     Implementation of Fourier filter.
     Takes a signal and filter parameters and return the filtered signal.
@@ -71,29 +75,37 @@ def fft_filter(signal, N=8, M=2):
 
     predicted_signal = []
 
-    for j in range(0, np.shape(signal)[0], N):      # iterates on the entire signal, taking steps by N (window size)
-
-        N = np.minimum(N, np.shape(signal)[0] - j)  # just in case we are at signal final and N samples are not avail
+    for j in range(
+        0, np.shape(signal)[0], N
+    ):  # iterates on the entire signal, taking steps by N (window size)
+        N = np.minimum(
+            N, np.shape(signal)[0] - j
+        )  # just in case we are at signal final and N samples are not avail
 
         R_0 = np.zeros(N)
-        R_0[:] = signal[j:j+N]                       # saves in R_0 signal values of corresponding window size
+        R_0[:] = signal[
+            j : j + N
+        ]  # saves in R_0 signal values of corresponding window size
 
-        R_0_fft = np.fft.fft(R_0)                    # fft of signal window
+        R_0_fft = np.fft.fft(R_0)  # fft of signal window
 
-        for k in range(int(N / 2)):                    # it keeps M samples of fft and sets the rest to zero
-            R_0_fft[M+k] = 0                         # remember fft symmetry
-            R_0_fft[-1-M-k] = 0
+        for k in range(
+            int(N / 2)
+        ):  # it keeps M samples of fft and sets the rest to zero
+            R_0_fft[M + k] = 0  # remember fft symmetry
+            R_0_fft[-1 - M - k] = 0
 
-        R_0_ifft = np.fft.ifft(R_0_fft)              # inverse fft
+        R_0_ifft = np.fft.ifft(R_0_fft)  # inverse fft
 
         for i in range(0, N):
-            predicted_signal.append(R_0_ifft[i])     # update predicted signal with this window calculation
+            predicted_signal.append(
+                R_0_ifft[i]
+            )  # update predicted signal with this window calculation
 
     return predicted_signal
 
 
 def kalman_block(x, P, s, A, H, Q, R):
-
     """
     Prediction and update in Kalman filter
 
@@ -123,7 +135,6 @@ def kalman_block(x, P, s, A, H, Q, R):
 
 
 def kalman_filter(signal, A, H, Q, R):
-
     """
 
     Implementation of Kalman filter.
@@ -140,21 +151,21 @@ def kalman_filter(signal, A, H, Q, R):
 
     predicted_signal = []
 
-    x = signal[0]                                 # takes first value as first filter prediction
-    P = 0                                         # set first covariance state value to zero
+    x = signal[0]  # takes first value as first filter prediction
+    P = 0  # set first covariance state value to zero
 
     predicted_signal.append(x)
-    for j, s in enumerate(signal[1:]):            # iterates on the entire signal, except the first element
-
+    for j, s in enumerate(
+        signal[1:]
+    ):  # iterates on the entire signal, except the first element
         x, P = kalman_block(x, P, s, A, H, Q, R)  # calculates next state prediction
 
-        predicted_signal.append(x)                # update predicted signal with this step calculation
+        predicted_signal.append(x)  # update predicted signal with this step calculation
 
     return predicted_signal
 
 
 def choose_particle(particles):
-
     """
     Takes an array of particles and returns an element according to weights distribution
 
@@ -171,20 +182,19 @@ def choose_particle(particles):
 
     sum_weights = 0
     for p in particles:
-        sum_weights += p['weight']
+        sum_weights += p["weight"]
 
     for p in particles:
-        prob_distribution.append(float(p['weight'] / sum_weights))
+        prob_distribution.append(float(p["weight"] / sum_weights))
 
     # choose particle according to weights distribution
 
     a = np.random.choice(particles, 1, replace=False, p=prob_distribution)
 
-    return a[0]['value'][0]
+    return a[0]["value"][0]
 
 
 def particle_filter(signal, quant_particles, A=1, H=1, Q=1.6, R=6):
-
     """
 
     Implementation of Particles filter.
@@ -200,52 +210,59 @@ def particle_filter(signal, quant_particles, A=1, H=1, Q=1.6, R=6):
 
     """
 
-
     predicted_signal = []
 
-    rang = 10                                                  # variation range of particles for initial step
+    rang = 10  # variation range of particles for initial step
 
-    x = signal[0]                                              # takes first value as first filter prediction
-    P = 0                                                      # set first covariance state value to zero
+    x = signal[0]  # takes first value as first filter prediction
+    P = 0  # set first covariance state value to zero
 
     predicted_signal.append(x)
 
-    min_weight_to_consider = 0.07                              # defines some needed constants in algorithm
+    min_weight_to_consider = 0.07  # defines some needed constants in algorithm
     min_weight_to_split_particle = 5
 
-    for j, s in enumerate(signal[1:]):                         # iterates on the entire signal, except the first element
-
-        range_ = [predicted_signal[j-1] - rang,
-                  predicted_signal[j-1] + rang]                # set variation range for first step sampling
+    for j, s in enumerate(
+        signal[1:]
+    ):  # iterates on the entire signal, except the first element
+        range_ = [
+            predicted_signal[j - 1] - rang,
+            predicted_signal[j - 1] + rang,
+        ]  # set variation range for first step sampling
 
         particles = []
 
-        for particle in range(quant_particles):                # loop on all particles
+        for particle in range(quant_particles):  # loop on all particles
+            input = np.random.uniform(
+                range_[0], range_[1]
+            )  # sample particle value from variation range
+            weight = 1 / np.abs(input - x)  # particle weight
 
-            input = np.random.uniform(range_[0], range_[1])    # sample particle value from variation range
-            weight = 1 / np.abs(input-x)                       # particle weight
+            if (
+                weight > min_weight_to_consider
+            ):  # it only iterates on particles which weights
+                # are greater than _min_weight_to_consider_
 
-            if weight > min_weight_to_consider:                # it only iterates on particles which weights
-                                                               # are greater than _min_weight_to_consider_
+                x_, P = kalman_block(
+                    input, P, s, A, H, Q, R
+                )  # calculates next state prediction
 
-                x_, P = kalman_block(input, P, s, A, H, Q, R)  # calculates next state prediction
-
-                weight = 1 / np.abs(s - x_)                    # prediction weight
-                particles.append({'value': x_, 'weight': weight})
+                weight = 1 / np.abs(s - x_)  # prediction weight
+                particles.append({"value": x_, "weight": weight})
 
                 # for particles with greater weights, it creates other particles in the 'neighborhood'
 
                 if weight > min_weight_to_split_particle:
-
                     input = input + np.random.uniform(0, 5)
                     x_, P = kalman_block(input, P, s, A, H, Q, R)
 
                     weight = 1 / np.abs(s - x_)
-                    particles.append({'value': x_, 'weight': weight})
+                    particles.append({"value": x_, "weight": weight})
 
-        x = choose_particle(particles)                         # choose a particle, according to weight distribution
+        x = choose_particle(
+            particles
+        )  # choose a particle, according to weight distribution
 
-        predicted_signal.append(x)                             # update predicted signal with this step calculation
+        predicted_signal.append(x)  # update predicted signal with this step calculation
 
     return predicted_signal
-

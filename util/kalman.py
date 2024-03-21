@@ -2,8 +2,8 @@ import math
 
 
 class KalmanFilter:
-    cov = float('nan')
-    x = float('nan')
+    cov = float("nan")
+    x = float("nan")
 
     def __init__(self, R, Q):
         """
@@ -33,11 +33,10 @@ class KalmanFilter:
             predCov = ((self.A * self.cov) * self.A) + self.R
 
             # Kalman Gain
-            K = predCov * self.C * (1 / ((self.C * predCov * self.C) + self.Q));
-
+            K = predCov * self.C * (1 / ((self.C * predCov * self.C) + self.Q))
             # Correction
-            self.x = predX + K * (measurement - (self.C * predX));
-            self.cov = predCov - (K * self.C * predCov);
+            self.x = predX + K * (measurement - (self.C * predX))
+            self.cov = predCov - (K * self.C * predCov)
 
         return self.x
 
@@ -91,5 +90,5 @@ class KalmanFilter:
 #         K = np.dot(np.dot(self.P, self.H.T), np.linalg.inv(S))
 #         self.x = self.x + np.dot(K, y)
 #         I = np.eye(self.n)
-#         self.P = np.dot(np.dot(I - np.dot(K, self.H), self.P), 
+#         self.P = np.dot(np.dot(I - np.dot(K, self.H), self.P),
 #         	(I - np.dot(K, self.H)).T) + np.dot(np.dot(K, self.R), K.T)
