@@ -7,7 +7,7 @@ from util.draw import (
     plot_distance_to_rssi_correlation,
     plot_rssi_to_time,
 )
-from get_coords.determine_static_position import determine_position_static_for_median, plot_static_position_and_mse
+from get_coords.determine_static_position import determine_position_static_for_median
 from get_coords.plot_walking_track import plot_walking_track
 import time
 
