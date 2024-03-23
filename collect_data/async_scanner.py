@@ -42,7 +42,7 @@ async def scan(filename_ending):
                 discovered_devices_addresses[address] = (advertisement_data.rssi)
             # 3+ devices is enough for triangulation
 
-            if len(discovered_devices_addresses.keys()) >= 3:
+            if len(discovered_devices_addresses.keys()) >= 4:
                 print("\nFOUND 3 OR MORE BEACONS, WRITING TO FILE")
                 save_to_csv(log_filename, ['-', '-', '-', '-'])
                 delta_rssi_addresses: dict[str, int] = {} 
@@ -50,7 +50,8 @@ async def scan(filename_ending):
                     delta_rssi_addresses[address] = abs(discovered_devices_addresses[address]-RSSI_AT_1M)
                 
                 # process only data for the three devices closest to the user
-                smallest_deltas_addresses: list[str] = sorted(delta_rssi_addresses, key=delta_rssi_addresses.get)[:3]         # type: ignore
+               # smallest_deltas_addresses: list[str] = sorted(delta_rssi_addresses, key=delta_rssi_addresses.get)[:3]         # type: ignore
+                smallest_deltas_addresses = delta_rssi_addresses
                 utc = datetime.now()
                 timestamp = time.time()
                 for address in smallest_deltas_addresses:
